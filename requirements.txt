@@ -1,0 +1,15 @@
+torch==2.14.0
+torchvision==0.29.0
+numpy==2.5.3
+pillow==12.3.0
+scikit-learn==1.9.1
+matplotlib==3.11.2
+seaborn==0.13.2
+pandas==3.0.6
+tqdm==4.70.1
+jupyter==1.1.1
+nbformat==5.11.1
+kaggle==2.2.4
+transformers==5.19.0
+sentencepiece==0.2.2
+protobuf==7.36.2
