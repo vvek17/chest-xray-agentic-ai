@@ -14,13 +14,13 @@ Steps:
 The original folder (Chest_X-ray) is never changed.
 
 Run it from the chest-xray-pneumonia folder:
-    python -m src.data_check
+    python -m training.data_check
 """
 
 import sys
 from pathlib import Path
 
-# Let the VS Code Run button find the "src" folder
+# Let the VS Code Run button find the project folders
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import hashlib
@@ -28,7 +28,7 @@ import shutil
 
 from PIL import Image
 
-from src import config
+from backend import config
 
 IMAGE_TYPES = [".png", ".jpg", ".jpeg"]
 

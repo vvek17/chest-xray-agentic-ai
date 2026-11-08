@@ -22,13 +22,18 @@ How it works:
 The embeddings are saved in outputs/features/, so step 1 runs only once.
 
 Run it from the chest-xray-pneumonia folder:
-    python -m src.dinov2_classify
+    python -m training.train_probe
+
+For the NEW frozen MedSigLIP + MedGemma model and NEW dataset splits:
+    python -m training.train_probe --new-model
+It caches features once, runs the baselines, trains the two linear heads for
+10 epochs, saves the best validation epoch, and tests the frozen results once.
 """
 
 import sys
 from pathlib import Path
 
-# Let the VS Code Run button find the "src" folder
+# Let the VS Code Run button find the project folders
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import copy
@@ -39,9 +44,10 @@ from PIL import Image
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import balanced_accuracy_score, f1_score
 from transformers import AutoImageProcessor, AutoModel, AutoProcessor
 
-from src import config
+from backend import config
 
 IMAGE_TYPES = [".png", ".jpg", ".jpeg"]
 BATCH_SIZE = 32
@@ -194,9 +200,17 @@ def train_probe_with_epochs(train_X, train_y, val_X, val_y):
     train_X = (train_X - mean) / std
     val_X = (val_X - mean) / std
 
+    # Sigmoid needs one YES/NO answer per class, not one class number.
+    # Covid-19 (class 0) becomes [1, 0, 0, 0]; Normal (class 1) becomes [0, 1, 0, 0].
+    train_y_per_class = torch.zeros(len(train_y), config.NUM_CLASSES)
+    train_y_per_class[torch.arange(len(train_y)), train_y] = 1.0
+
     # The linear probe: 768 numbers in -> 4 scores out (one per disease)
     probe = nn.Linear(train_X.shape[1], config.NUM_CLASSES)
-    loss_function = nn.CrossEntropyLoss()                            # how wrong the guesses are
+    loss_function = nn.BCEWithLogitsLoss()                           # how wrong the guesses are
+    # The old way (softmax). CrossEntropyLoss does softmax inside itself, so the 4 scores
+    # were forced to add up to 1 and the probe could never say "none of these".
+    # loss_function = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(probe.parameters(), lr=0.001)       # fixes the probe a little
 
     best_accuracy = 0
@@ -213,17 +227,24 @@ def train_probe_with_epochs(train_X, train_y, val_X, val_y):
             batch = order[start:start + 64]
             optimizer.zero_grad()                         # 1. forget the old fixes
             guesses = probe(train_X[batch])               # 2. the probe guesses
-            loss = loss_function(guesses, train_y[batch]) # 3. how wrong?
+            loss = loss_function(guesses, train_y_per_class[batch])  # 3. how wrong?
             loss.backward()                               # 4. find how to fix it
             optimizer.step()                              # 5. fix it a little
 
         # ---- Check on Validation ----
+        # The highest score still wins, exactly as before: sigmoid does not change the
+        # order of the scores, so the accuracy can be compared with the old runs.
         probe.eval()
         with torch.no_grad():
-            predicted = probe(val_X).argmax(dim=1)
+            val_scores = probe(val_X)
+            predicted = val_scores.argmax(dim=1)
+            # New with sigmoid: how often does the probe say "I do not know"?
+            # (every class below 50%). With softmax this was impossible.
+            unsure = (torch.sigmoid(val_scores).max(dim=1).values < 0.5).float().mean().item()
         val_accuracy = (predicted == val_y).float().mean().item()
 
-        print(f"  Epoch {epoch + 1}: validation accuracy = {val_accuracy:.2%}", end="")
+        print(f"  Epoch {epoch + 1}: validation accuracy = {val_accuracy:.2%} "
+              f"(unsure: {unsure:.1%})", end="")
         if val_accuracy > best_accuracy:
             best_accuracy = val_accuracy
             best_epoch = epoch + 1
@@ -287,6 +308,98 @@ def accuracy(true_labels, predicted_labels):
         if int(true) == int(predicted):
             correct += 1
     return correct / len(true_labels)
+
+
+# ============================================================
+# NEW MODEL: MedSigLIP + MedGemma, with softmax and sigmoid heads
+# Only the tiny heads learn. Both large models stay frozen.
+# ============================================================
+def train_new_probe_with_epochs(train_X, train_y, val_X, val_y, classes):
+    """Train for exactly 10 epochs and keep the best validation epoch."""
+    from backend.dual_backbone import FusedHeads
+
+    torch.manual_seed(42)
+    order_generator = torch.Generator().manual_seed(42)
+    number_of_classes = len(classes)
+
+    # The two linear heads share the same combined image features.
+    probe = FusedHeads(train_X.shape[1], number_of_classes)
+    probe.fit_scaler(train_X)  # learn mean/std from Training only
+
+    # Give each class a fair contribution to the two losses.
+    counts = torch.bincount(train_y, minlength=number_of_classes).float()
+    class_weights = len(train_y) / (number_of_classes * counts)
+    positive_weights = (len(train_y) - counts) / counts
+    softmax_loss = nn.CrossEntropyLoss(weight=class_weights)
+    sigmoid_loss = nn.BCEWithLogitsLoss(pos_weight=positive_weights)
+    train_targets = nn.functional.one_hot(train_y, number_of_classes).float()
+    val_targets = nn.functional.one_hot(val_y, number_of_classes).float()
+    optimizer = torch.optim.AdamW(probe.parameters(), lr=0.001, weight_decay=0.0001)
+
+    best_score = None
+    best_weights = None
+    best_epoch = 0
+    history = []
+
+    for epoch in range(1, 11):
+        # 1. Learn from the Training features, in batches of 128.
+        probe.train()
+        order = torch.randperm(len(train_y), generator=order_generator)
+        total_loss = 0.0
+        for start in range(0, len(order), 128):
+            batch = order[start:start + 128]
+            optimizer.zero_grad()
+            softmax_scores, sigmoid_scores = probe(train_X[batch])
+            loss = softmax_loss(softmax_scores, train_y[batch])
+            loss = loss + sigmoid_loss(sigmoid_scores, train_targets[batch])
+            if not torch.isfinite(loss):
+                raise ValueError("Training loss contains NaN or infinity")
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item() * len(batch)
+
+        # 2. Check Validation. Nothing learns from these images.
+        probe.eval()
+        with torch.no_grad():
+            softmax_scores, sigmoid_scores = probe(val_X)
+            val_loss = softmax_loss(softmax_scores, val_y)
+            val_loss = float(val_loss + sigmoid_loss(sigmoid_scores, val_targets))
+            probabilities = probe.probabilities(val_X)["averaged"]
+            predicted = probabilities.argmax(dim=1).numpy()
+
+        macro_f1 = float(f1_score(val_y.numpy(), predicted, average="macro", zero_division=0))
+        balanced = float(balanced_accuracy_score(val_y.numpy(), predicted))
+        score = (macro_f1, balanced, -val_loss)
+        history.append({"epoch": epoch, "train_loss": total_loss / len(train_y),
+                        "val_loss": val_loss, "val_macro_f1": macro_f1,
+                        "val_balanced_accuracy": balanced})
+
+        # 3. Remember the best epoch, using Validation only.
+        improved = best_score is None or score > best_score
+        if improved:
+            best_score = score
+            best_epoch = epoch
+            best_weights = copy.deepcopy(probe.state_dict())
+        print(f"Epoch {epoch:2}/10: validation macro-F1 = {macro_f1:.2%}, "
+              f"balanced accuracy = {balanced:.2%}" + (" <- best" if improved else ""), flush=True)
+
+    probe.load_state_dict(best_weights)
+    details = {"lr": 0.001, "weight_decay": 0.0001, "best_epoch": best_epoch,
+               "epochs_run": 10, "validation_macro_f1": best_score[0],
+               "validation_balanced_accuracy": best_score[1], "history": history}
+    print(f"Best epoch: {best_epoch} of 10", flush=True)
+    return probe.eval(), details, class_weights.tolist(), positive_weights.tolist()
+
+
+def main_new_model():
+    """The same three steps as the original experiment, using the new model."""
+    from training import run_new_model_baselines as experiment
+
+    print("NEW MODEL: frozen MedSigLIP + frozen MedGemma", flush=True)
+    print("New dataset: data/new_distribution", flush=True)
+    # The helper handles cached features, saving models and result files.
+    # Step 1: get features once. Step 2: train/select. Step 3: test once.
+    experiment.main(["--stage", "all"])
 
 
 # ============================================================
@@ -355,4 +468,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--new-model" in sys.argv:
+        main_new_model()
+    else:
+        main()

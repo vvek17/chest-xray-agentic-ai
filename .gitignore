@@ -10,7 +10,16 @@ data/raw/*
 data/processed/*
 models/*
 outputs/*
+data/external/
+data/new_distribution/*
+!data/new_distribution/README.md
 !**/.gitkeep
+
+# Local credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
 
 # OS / editor
 .DS_Store

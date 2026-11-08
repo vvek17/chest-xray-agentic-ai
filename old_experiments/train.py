@@ -2,22 +2,22 @@
 Train the model.
 
 Run from the chest-xray-pneumonia folder:
-    python -m src.train
+    python -m old_experiments.train
 """
 
 import sys
 from pathlib import Path
 
-# Let the VS Code Run button find the "src" folder
+# Let the VS Code Run button find the project folders
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import torch
 import torch.nn as nn
 
-from src import config
-from src.data_loader import load_photos, make_batches
-from src.model import build_model
-from src.utils import save_model, set_seed
+from backend import config
+from old_experiments.data_loader import load_photos, make_batches
+from old_experiments.model import build_model
+from old_experiments.utils import save_model, set_seed
 
 
 def learn_one_epoch(model, train_batches, loss_function, optimizer):
@@ -104,7 +104,7 @@ def main():
     print()
     print(f"Best validation accuracy: {best_accuracy:.2%}")
     print(f"Best model saved to: {config.BEST_MODEL_PATH}")
-    print("Next: python -m src.evaluate")
+    print("Next: python -m old_experiments.evaluate")
 
 
 if __name__ == "__main__":

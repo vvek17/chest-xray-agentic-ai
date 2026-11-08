@@ -3,21 +3,21 @@ The final exam: test the saved model on the TESTING photos.
 The model has never seen these photos.
 
 Run from the chest-xray-pneumonia folder (after training):
-    python -m src.evaluate
+    python -m old_experiments.evaluate
 """
 
 import sys
 from pathlib import Path
 
-# Let the VS Code Run button find the "src" folder
+# Let the VS Code Run button find the project folders
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import torch
 
-from src import config
-from src.data_loader import load_photos, make_batches
-from src.model import build_model
-from src.utils import load_model
+from backend import config
+from old_experiments.data_loader import load_photos, make_batches
+from old_experiments.model import build_model
+from old_experiments.utils import load_model
 
 
 def test_each_disease(model, photos):

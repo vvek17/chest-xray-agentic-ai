@@ -1,24 +1,23 @@
 """
-Helper code for prompt_engineering.py.
+Helper code for run_prompts.py.
 
 YOU DO NOT NEED TO CHANGE THIS FILE.
 It does the technical work:
   - choose the photos (the 10% / 20% / 70% split and the small balanced sets)
-  - load MedGemma and ask it about one X-ray
+  - choose the solved examples for few-shot prompts
   - save every answer to a log file
 """
 
 import csv
 import random
+import sys
 from pathlib import Path
 
-import torch
-from PIL import Image
-from transformers import AutoModelForImageTextToText, AutoProcessor
+# Let the VS Code Run button find the project folders
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import config
+from backend import config
 
-MEDGEMMA_NAME = "google/medgemma-1.5-4b-it"
 SPLIT_DIR = config.PROJECT_ROOT / "outputs" / "prompt_split"
 LOG_DIR = config.PROJECT_ROOT / "outputs" / "prompt_logs"
 SPLIT_SIZES = {"train": 0.10, "val": 0.20, "test": 0.70}
@@ -90,44 +89,31 @@ def get_photos(part, number_of_photos, classes):
     return chosen
 
 
-# ------------------------------------------------------------
-# MedGemma
-# ------------------------------------------------------------
-def load_medgemma():
-    """Load MedGemma (the first time it downloads about 8 GB)."""
-    print(f"Loading {MEDGEMMA_NAME} ...")
-    processor = AutoProcessor.from_pretrained(MEDGEMMA_NAME)
-    model = AutoModelForImageTextToText.from_pretrained(MEDGEMMA_NAME, dtype=torch.bfloat16)
-    model = model.to(config.DEVICE)
-    model.eval()
-    return {"processor": processor, "model": model}
+def get_examples(classes, examples_per_class, photos=None):
+    """
+    Example photos for few-shot prompts, with their correct class.
+    They come from the training part, but from far down the list (position 100+),
+    so they are never one of the photos we test on.
+    """
+    # A caller may supply a fresh, already screened pool for a new experiment.
+    # Keep the original behavior for every existing caller.
+    EXAMPLE_START = 100
+    if photos is None:
+        photos = load_split("train")
+    else:
+        EXAMPLE_START = 0
+    per_class = {}
+    for disease in classes:
+        per_class[disease] = []
+    for path, disease in photos:
+        if disease in classes:
+            per_class[disease].append((path, disease))
 
-
-def ask_medgemma(medgemma, photo_path, prompt):
-    """Show MedGemma one X-ray with the prompt. Return its answer as text."""
-    processor = medgemma["processor"]
-    model = medgemma["model"]
-
-    image = Image.open(photo_path).convert("RGB")
-    messages = [
-        {"role": "system", "content": [{"type": "text", "text": prompt["system"]}]},
-        {"role": "user", "content": [
-            {"type": "image", "image": image},
-            {"type": "text", "text": prompt["user"]},
-        ]},
-    ]
-    inputs = processor.apply_chat_template(
-        messages, add_generation_prompt=True, tokenize=True,
-        return_dict=True, return_tensors="pt",
-    ).to(config.DEVICE, dtype=torch.bfloat16)
-
-    input_length = inputs["input_ids"].shape[-1]
-    max_tokens = prompt.get("max_tokens", 20)
-    with torch.no_grad():
-        output = model.generate(**inputs, max_new_tokens=max_tokens, do_sample=False)
-
-    new_tokens = output[0][input_length:]    # only the words MedGemma wrote
-    return processor.decode(new_tokens, skip_special_tokens=True).strip()
+    examples = []
+    for i in range(examples_per_class):
+        for disease in classes:
+            examples.append(per_class[disease][EXAMPLE_START + i])
+    return examples
 
 
 # ------------------------------------------------------------
@@ -142,3 +128,8 @@ def save_log(results, version, classes, part):
         writer.writeheader()
         writer.writerows(results)
     print(f"Saved all answers: {log_path}")
+
+
+if __name__ == "__main__":
+    print("This file is only a helper. It is not meant to be run.")
+    print("Run prompt_engineering/run_prompts.py instead.")

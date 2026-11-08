@@ -1,0 +1,25 @@
+/* Native Streamlit variables follow the selected light or dark theme. */
+.block-container { max-width: 1440px; padding-top: 2.1rem; padding-bottom: 3rem; }
+[data-testid="stSidebar"] { border-right: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent); }
+h1 { letter-spacing: -0.045em; }
+h2, h3 { letter-spacing: -0.025em; }
+[data-testid="stVerticalBlockBorderWrapper"] { border-radius: 18px; }
+[data-testid="stMetric"] { padding: 1rem; border-radius: 14px; background: var(--secondary-background-color); }
+[data-testid="stMetricLabel"] { color: var(--text-color); opacity: .8; }
+[data-testid="stMetricValue"] { font-size: 1.7rem; }
+.eyebrow { color: #159995; font-size: .78rem; font-weight: 700; letter-spacing: .15em; margin-bottom: .35rem; }
+.research-banner { border: 1px solid #6b9db8; border-left: 4px solid #229b9a; border-radius: 12px; padding: .8rem 1rem; margin: 1rem 0 1.4rem; background: color-mix(in srgb, #369eb3 9%, var(--background-color)); color: var(--text-color); }
+.score-row { padding: .6rem .8rem; margin-bottom: .55rem; border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent); border-radius: 12px; }
+.score-row.top { border-color: #278da8; background: color-mix(in srgb, #278da8 10%, var(--background-color)); }
+.score-label { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-bottom: .45rem; font-size: .9rem; }
+.score-name { font-weight: 600; }
+.score-value { font-variant-numeric: tabular-nums; }
+.score-track { height: 9px; border-radius: 20px; background: color-mix(in srgb, var(--text-color) 12%, transparent); overflow: hidden; }
+.score-fill { height: 100%; border-radius: 20px; background: #6a9aa6; }
+.top .score-fill { background: linear-gradient(90deg, #347ec2, #199b98); }
+.top-tag { color: #15748d; background: #e0f2f5; border-radius: 6px; font-size: .7rem; padding: .15rem .35rem; margin-left: .4rem; }
+.result-heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .6rem; font-size: 1rem; font-weight: 600; }
+.badge { border-radius: 20px; padding: .3rem .8rem; font-size: .8rem; font-weight: 700; }
+.badge.agree { background: #d9f3e6; color: #176346; }
+.badge.disagree { background: #fff0ca; color: #805313; }
+.badge.other { background: #e7edf3; color: #445467; }

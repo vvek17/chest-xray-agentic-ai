@@ -6,7 +6,7 @@ Used by: data_loader.py (and later predict.py)
 
 from torchvision import transforms
 
-from src import config
+from backend import config
 
 
 def get_photo_recipe():

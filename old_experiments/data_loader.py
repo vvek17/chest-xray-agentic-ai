@@ -8,8 +8,8 @@ Used by: train.py and evaluate.py
 from torch.utils.data import DataLoader
 from torchvision import datasets
 
-from src import config
-from src.preprocessing import get_photo_recipe
+from backend import config
+from old_experiments.preprocessing import get_photo_recipe
 
 
 def load_photos(folder):

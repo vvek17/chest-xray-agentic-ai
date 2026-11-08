@@ -1,0 +1,3 @@
+# Treat document artifacts as binary, including PDFs containing readable text.
+*.pdf binary
+*.pptx binary

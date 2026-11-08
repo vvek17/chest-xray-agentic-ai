@@ -12,7 +12,7 @@ Used by: train.py and evaluate.py
 import torch.nn as nn
 from torchvision import models
 
-from src import config
+from backend import config
 
 
 def build_model(pretrained=True):

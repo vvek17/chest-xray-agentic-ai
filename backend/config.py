@@ -6,7 +6,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # Original data (complete dataset, 15,600 images; we never change it)
 RAW_DIR = PROJECT_ROOT.parent / "Chest_X-ray"
 
-# Clean copy made by src/data_check.py (the model uses this one)
+# Clean copy made by training/data_check.py (the model uses this one)
 CLEAN_DIR = PROJECT_ROOT / "data" / "processed"
 
 SPLITS = ["Training", "Validation", "Testing"]
@@ -24,12 +24,33 @@ MODEL_NAME = "densenet121"
 # Each model is saved in its own file, e.g. models/best_densenet121.pth
 BEST_MODEL_PATH = MODEL_DIR / f"best_{MODEL_NAME}.pth"
 
-# Frozen pretrained model (no fine-tuning), used by src/dinov2_classify.py
+# Frozen pretrained model (no fine-tuning), used by training/train_probe.py
 #   "facebook/dinov2-base"  = DINOv2, learned from normal photos
 #   "microsoft/rad-dino"    = RAD-DINO, a DINOv2 that learned from chest X-rays
 #   "google/medsiglip-448"  = MedSigLIP, learned from medical images AND text
 #                             (it can also do zero-shot; needs Hugging Face login)
 DINOV2_NAME = "google/medsiglip-448"            # downloaded from Hugging Face
+
+# ============================================================
+# Upload safety rules (used by backend/xray_check.py, the web page and the tests)
+# Chosen on the Validation set, confirmed once on the Testing set.
+# ============================================================
+SUPPORTED_LABELS = ["Normal", "Pneumonia"]   # the only answers the system may give
+
+# Check 1: similarity to the training chest X-rays (0 to 1). Below this -> rejected.
+# Validation X-rays: lowest 0.44. Non-X-ray screenshots: highest 0.42.
+XRAY_SIMILARITY_LIMIT = 0.43
+
+# Check 2: probability (4-class model) that the X-ray belongs to a class we do NOT support.
+# At or above this -> needs review. 0.20 cut unsupported X-rays that got an answer
+# from 1.9% to 0.6% (Validation) and from 3.2% to 1.3% (Testing).
+OUT_OF_SCOPE_LIMIT = 0.20
+
+# Check 3: confidence of the 2-class model. Below this -> needs review.
+# 0.80 vs 0.90 gave the same error rate on Validation (1 wrong answer in ~930),
+# and 0.90 rejected more good X-rays, so 0.80 is used. The model is well
+# calibrated on Normal/Pneumonia X-rays (ECE 0.004 on Validation).
+CONFIDENCE_LIMIT = 0.80
 
 # Zero-shot (MedSigLIP only): the sentence used for each disease
 ZERO_SHOT_PROMPTS = {
