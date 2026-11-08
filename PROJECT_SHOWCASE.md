@@ -6,7 +6,7 @@
 
 > **Research prototype. Not for clinical use.** This project investigates model behavior and evaluation methods; it is not a clinically validated diagnostic system.
 
-## The project in 60 seconds
+## Project Overview
 
 Can a specialist image classifier provide useful evidence to a multimodal language model—and can that second model correct the classifier when the image disagrees?
 
