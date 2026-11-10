@@ -8,7 +8,7 @@ import pytest
 import streamlit as st
 from streamlit.testing.v1 import AppTest
 
-from backend import medgemma, predict
+from backend import medgemma, predict, xray_check
 from frontend import evaluation
 from frontend.app import PROMPT_LABELS, binary_hint, make_prompt, recognized_answer
 from prompt_engineering import photos
@@ -45,10 +45,10 @@ def fake_models(monkeypatch):
         return "medgemma"
 
     def classify(model, image):
-        assert model == "probe"
+        assert model["model"] == "probe"
         assert image.mode == "RGB"
         calls["classifications"] += 1
-        return {"Tuberculosis": .9, "Normal": .2, "Pneumonia": .1, "Covid-19": .05}
+        return {"Tuberculosis": .05, "Normal": .2, "Pneumonia": .1, "Covid-19": .04}
 
     def ask(model, image, prompt, examples=None):
         assert model == "medgemma"
@@ -61,7 +61,14 @@ def fake_models(monkeypatch):
         (Image.new("RGB", (64, 64), "black"), "Normal"),
         (Image.new("RGB", (64, 64), "white"), "Pneumonia"),
     ])
-    monkeypatch.setattr(predict, "load_classifier", load_classifier)
+    def load_checker():
+        calls["classifier_loads"] += 1
+        return {"processor": None, "model": "probe", "number_type": None,
+                "four": {"probe": None, "mean": None, "std": None,
+                         "classes": ["Covid-19", "Normal", "Pneumonia", "Tuberculosis"]}}
+
+    monkeypatch.setattr(xray_check, "load_checker", load_checker)
+    monkeypatch.setattr(xray_check, "check_xray", lambda checker, image: {"status": "accepted", "reason": "all_checks_passed"})
     monkeypatch.setattr(predict, "predict", classify)
     monkeypatch.setattr(medgemma, "load_medgemma", load_medgemma)
     monkeypatch.setattr(medgemma, "ask_medgemma", ask)
@@ -80,7 +87,7 @@ def test_empty_page_has_tabs_and_no_model_loads(monkeypatch):
     assert calls["medgemma_loads"] == 0
 
 
-# The final answer can disagree with the rescaled hint, despite another raw top class.
+# A scope-accepted input can still produce disagreement and require review.
 def test_hybrid_upload_cache_and_changed_settings(monkeypatch):
     monkeypatch.setattr(st, "file_uploader", lambda *a, **kw: uploaded_image())
     calls = fake_models(monkeypatch)
@@ -93,8 +100,8 @@ def test_hybrid_upload_cache_and_changed_settings(monkeypatch):
     assert app.session_state["analysis_result"]["hint"]["label"] == "Normal"
     assert app.session_state["analysis_result"]["hint"]["score"] == pytest.approx(2/3)
     assert app.session_state["analysis_result"]["hybrid"]["label"] == "Pneumonia"
-    assert any("Disagree" in item.value for item in app.markdown)
-    assert any("raw top class is Tuberculosis" in item.value for item in app.caption)
+    assert app.session_state["analysis_result"]["decision"] == "Needs review"
+    assert app.session_state["analysis_result"]["top_class"] == "Normal"
     assert len(calls["questions"]) == 1
     app.run()
     assert len(calls["questions"]) == 1
@@ -119,7 +126,7 @@ def test_unparseable_medgemma_answer(monkeypatch):
     app.button[0].click().run()
     assert not app.exception
     assert app.session_state["analysis_result"]["hybrid"]["label"] == "Other"
-    assert any("not recognized" in item.value for item in app.warning)
+    assert app.session_state["analysis_result"]["decision"] == "Needs review"
 
 
 # Broken uploads must not block the other tabs or load the models.
@@ -146,7 +153,7 @@ def test_model_failure_keeps_classifier_evidence(monkeypatch):
     app.sidebar.selectbox[0].set_value("label_only").run()
     app.button[0].click().run()
     assert not app.exception
-    assert app.error
+    assert "error" in app.session_state["analysis_result"]
     assert "scores" in app.session_state["analysis_result"]
     assert "hybrid" not in app.session_state["analysis_result"]
 
@@ -259,3 +266,74 @@ def test_prompt_browser_and_about_table(monkeypatch):
     assert any(item.value == "Prompt browser" for item in app.subheader)
     assert any("max_tokens" in item.value for item in app.markdown)
     assert list(app.table[0].value["Prompt"]) == ["Hint + score", "Hint only", "Double-check"]
+
+
+@pytest.mark.parametrize("status", ["rejected", "needs_review"])
+def test_scope_failure_stops_binary_and_generation(monkeypatch, status):
+    monkeypatch.setattr(st, "file_uploader", lambda *a, **kw: uploaded_image())
+    calls = fake_models(monkeypatch)
+    monkeypatch.setattr(xray_check, "check_xray", lambda *a: {
+        "status": status, "reason": "outside_supported_labels"})
+    app = AppTest.from_file(str(APP)).run()
+    app.button[0].click().run()
+    assert not app.exception
+    result = app.session_state["analysis_result"]
+    assert result["decision"] == "Outside supported scope - needs review"
+    assert "hint" not in result and "scores" not in result
+    assert not calls["questions"] and calls["classifications"] == 0
+    assert calls["medgemma_loads"] == 0
+    assert [row["status"] for row in result["trace"]] == [
+        "done", "done", "done", "skipped", "skipped", "skipped", "skipped", "done"]
+    assert result["tool_calls"] == 2
+
+
+def test_agreement_trace_and_optional_second_run(monkeypatch):
+    monkeypatch.setattr(st, "file_uploader", lambda *a, **kw: uploaded_image())
+    calls = fake_models(monkeypatch)
+    monkeypatch.setattr(medgemma, "ask_medgemma", lambda *a, **kw: "Normal")
+    app = AppTest.from_file(str(APP)).run()
+    app.sidebar.selectbox[0].set_value("2c_v1").run()
+    app.sidebar.toggle[0].set_value(True).run()
+    app.button[0].click().run()
+    assert not app.exception
+    result = app.session_state["analysis_result"]
+    assert result["decision"] == "Normal"
+    assert all(row["status"] == "done" for row in result["trace"])
+    assert result["tool_calls"] == 5
+    assert result["trace"][5]["input"]["examples"] == []
+    assert result["trace"][6]["input"]["examples"] == []
+    assert result["trace"][5]["input"]["prompt"] == result["trace"][6]["input"]["prompt"]
+
+
+def test_new_upload_clears_trace_and_result(monkeypatch):
+    upload = [uploaded_image()]
+    monkeypatch.setattr(st, "file_uploader", lambda *a, **kw: upload[0])
+    calls = fake_models(monkeypatch)
+    app = AppTest.from_file(str(APP)).run()
+    app.button[0].click().run()
+    assert "analysis_result" in app.session_state
+    changed = io.BytesIO()
+    Image.new("RGB", (64, 64), "black").save(changed, format="PNG")
+    upload[0] = changed
+    app.run()
+    assert not app.exception
+    assert "analysis_result" not in app.session_state
+    assert len(calls["questions"]) == 1
+
+
+def test_scope_exception_never_generates(monkeypatch):
+    monkeypatch.setattr(st, "file_uploader", lambda *a, **kw: uploaded_image())
+    calls = fake_models(monkeypatch)
+
+    def fail(*args):
+        raise RuntimeError("Scope model unavailable")
+
+    monkeypatch.setattr(xray_check, "check_xray", fail)
+    app = AppTest.from_file(str(APP)).run()
+    app.button[0].click().run()
+    assert not app.exception
+    result = app.session_state["analysis_result"]
+    assert result["trace"][2]["status"] == "failed"
+    assert all(row["status"] == "skipped" for row in result["trace"][3:])
+    assert "hint" not in result and not calls["questions"]
+    assert result["decision"] == "Analysis failed - needs review"

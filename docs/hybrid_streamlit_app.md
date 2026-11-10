@@ -1,3 +1,53 @@
+# Current Streamlit controller
+
+Run from `chest-xray-pneumonia`:
+
+```bash
+source ../.venv/bin/activate
+streamlit run frontend/app.py --server.port 8502
+```
+
+Open http://localhost:8502.
+
+`frontend/app.py` contains the thin sequential controller and UI. It reuses the
+existing cleaner, upload checker, classifier, prompts, examples, and MedGemma.
+No backend model code, thresholds, or prompt definitions were changed.
+
+The plan is receive, clean, scope check, classify, rescale the two-class
+comparison, ask MedGemma, optionally ask MedGemma without context, and decide.
+Any non-accepted scope result stops steps four through seven. The final output
+is "Outside supported scope - needs review". Accepted inputs receive a label
+only when the binary classifier comparison and selected MedGemma answer agree;
+otherwise the controller returns "Needs review". The optional comparison is
+shown separately and does not vote on the final decision.
+
+The checker and classifier share loaded weights. Their existing public functions
+still perform their own preprocessing and feature extraction. The UI does not
+alter those functions to optimize inference.
+
+The timeline updates at step transitions, including running and failed states.
+Timing includes model loading. The counter counts top-level cleaning, checking,
+classification, and generation attempts; nested backend operations and model
+loaders are excluded. Input images are identified by mode, dimensions, and a
+pixel SHA-256; the original and cleaned images are shown alongside the trace.
+Raw generation text, prompt settings, and example context are inspectable.
+
+Results are cleared when image content or relevant settings change. A failed
+run preserves completed evidence but never displays an earlier answer.
+
+`frontend/evaluation.py` reads actual saved metrics, prediction CSVs,
+configuration JSONs, and the report from its existing `RESULTS_DIR`. Missing
+files produce empty states. Historical evaluation results do not validate the
+new gated controller; their original configurations remain visible.
+
+No dependencies were added. Tests use isolated test doubles; application output
+always comes from real backend calls. Full large-model inference is not part of
+the fast UI test suite. This is a research prototype, not a clinical tool.
+
+# Previous interface source snapshot
+
+The source below documents the earlier interface, not the current controller.
+
 # Hybrid Streamlit app — full source
 
 ## File structure

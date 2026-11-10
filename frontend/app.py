@@ -26,7 +26,8 @@ from PIL import Image, UnidentifiedImageError
 from backend import config
 from backend.clean_image import clean_xray
 from backend.medgemma import ask_medgemma, load_medgemma, read_answer
-from backend.predict import PROBE_4_CLASSES, load_classifier, predict
+from backend.predict import predict
+from backend.xray_check import ACCEPTED, check_xray, load_checker
 from frontend.evaluation import show_evaluation
 from prompt_engineering.prompts import CURRENT_VERSION, PROMPTS
 from prompt_engineering.photos import get_examples
@@ -45,8 +46,14 @@ FALLBACK_VERSION = "label_only"
 
 # Keep each model in memory so clicks and sidebar reruns do not reload its weights.
 @st.cache_resource
+def get_checker():
+    return load_checker()
+
+
 def get_classifier():
-    return load_classifier(PROBE_4_CLASSES)
+    # Reuse the same frozen backbone and probe already loaded by the checker.
+    checker = get_checker()
+    return {key: checker[key] for key in ("processor", "model", "number_type")} | checker["four"] | {"activation": "sigmoid"}
 
 
 # Cache MedGemma separately so the no-upload page never loads either large model.
@@ -112,7 +119,7 @@ def show_sidebar():
             st.write("**max_tokens**")
             st.write(PROMPTS[version]["max_tokens"])
         st.divider()
-        st.caption("First use loads model weights. MedGemma usually takes about 4–5 seconds per image on Apple MPS; comparison adds another pass.")
+        st.caption("First use loads model weights. The optional comparison adds a separate generation call.")
         st.caption("No hybrid winner has been established yet. Select the prompt you want to explore.")
     return version, compare
 
@@ -175,42 +182,147 @@ def selected_examples(version, image):
     return examples
 
 
-# Show classifier evidence, then run the selected hint-based or no-hint prompt.
-def analyze(original, version, compare):
-    result = {}
+# The controller only orders existing tools and applies the requested stop rules.
+PLAN = [
+    ("Receive image", "PIL.Image"),
+    ("Clean image", "backend.clean_image.clean_xray"),
+    ("Scope check", "backend.xray_check.check_xray"),
+    ("Classifier", "backend.predict.predict"),
+    ("Two-class comparison", "binary_hint"),
+    ("MedGemma", "backend.medgemma.ask_medgemma"),
+    ("MedGemma alone", "backend.medgemma.ask_medgemma"),
+    ("Final decision", "controller"),
+]
+
+
+def image_record(image):
+    return {"mode": image.mode, "size": list(image.size),
+            "pixel_sha256": hashlib.sha256(image.tobytes()).hexdigest()}
+
+
+def analyze(original, version, compare, render=None):
     started = perf_counter()
-    with st.spinner("Reading the image with MedSigLIP…"):
-        scores = predict(get_classifier(), original)
-    check_scores(scores)
-    result["scores"] = scores
-    result["hint"] = binary_hint(scores)
-    result["top_class"] = max(scores, key=scores.get)
-    image = clean_xray(original)
-    prompt = make_prompt(version, result["hint"])
-    result["prompt"] = prompt
-    result["version"] = version
-    result["uses_hint"] = "{label}" in PROMPTS[version]["user"]
-    examples = selected_examples(version, image)
-    result["example_count"] = len(examples)
-    # Retain the classifier output even if the second model cannot finish.
+    result = {"version": version, "trace": [
+        {"step": name, "tool": tool, "status": "pending", "seconds": None,
+         "input": None, "output": None} for name, tool in PLAN], "tool_calls": 0}
     st.session_state.analysis_result = result
-    with st.spinner("MedGemma is reviewing the image…"):
-        model = get_medgemma()
-        result["hybrid"] = ask_for_label(model, image, prompt, examples)
-    if compare and version == "2c_v1":
-        result["alone"] = result["hybrid"]
-    elif compare:
-        with st.spinner("Running MedGemma alone for comparison…"):
-            result["alone"] = ask_for_label(model, image, PROMPTS["2c_v1"])
-    result["elapsed"] = perf_counter() - started
+
+    def refresh():
+        result["elapsed"] = perf_counter() - started
+        if render:
+            render(result)
+
+    def step(index, inputs, action, tool_call=True):
+        row = result["trace"][index]
+        row.update(status="running", input=inputs)
+        if tool_call:
+            result["tool_calls"] += 1
+        refresh()
+        tick = perf_counter()
+        try:
+            value, raw = action()
+            row.update(status="done", output=raw)
+            return value
+        except Exception as error:
+            row.update(status="failed", output={"error": f"{type(error).__name__}: {error}"})
+            raise
+        finally:
+            row["seconds"] = perf_counter() - tick
+            refresh()
+
+    def skip(index, reason):
+        result["trace"][index].update(status="skipped", output={"reason": reason})
+
+    try:
+        step(0, image_record(original), lambda: (original, image_record(original)), False)
+        image = step(1, image_record(original), lambda: clean_step(original))
+        result["cleaned"] = image
+        scope = step(2, image_record(original), lambda: scope_step(original))
+        result["scope"] = scope
+        if scope["status"] != ACCEPTED:
+            for index in range(3, 7):
+                skip(index, "Scope checks did not pass; binary analysis stopped.")
+            decision = "Outside supported scope - needs review"
+        else:
+            scores = step(3, image_record(original), lambda: classifier_step(original))
+            check_scores(scores)
+            result.update(scores=scores, top_class=max(scores, key=scores.get))
+            hint = step(4, scores, lambda: comparison_step(scores), False)
+            result["hint"] = hint
+            prompt = make_prompt(version, hint)
+            result.update(prompt=prompt, uses_hint="{label}" in PROMPTS[version]["user"])
+            examples = selected_examples(version, image)
+            result["example_count"] = len(examples)
+            inputs = {"image": image_record(image), "prompt": prompt,
+                      "examples": [{"image": image_record(photo), "label": label,
+                                    "user": prompt.get("example_user", prompt["user"]),
+                                    "answer": prompt.get("example_answer", "{class}").format(**{"class": label})}
+                                   for photo, label in examples]}
+            def ask(prompt, examples=None):
+                answer = ask_for_label(get_medgemma(), image, prompt, examples)
+                return answer, answer
+            result["hybrid"] = step(5, inputs, lambda: ask(prompt, examples))
+            if compare:
+                result["alone"] = step(6, {"image": image_record(image), "prompt": PROMPTS["2c_v1"], "examples": []},
+                                       lambda: ask(PROMPTS["2c_v1"]))
+            else:
+                skip(6, "Optional comparison is turned off.")
+            final = result["hybrid"]["label"]
+            result["agreement"] = "Agree" if final == hint["label"] else "Disagree"
+            decision = final if final in CLASSES and final == hint["label"] else "Needs review"
+        result["decision"] = step(7, {"scope": scope, "comparison": result.get("hint"),
+                                     "medgemma": result.get("hybrid")},
+                                  lambda: (decision, {"decision": decision}), False)
+    except Exception as error:
+        result.update(error=f"{type(error).__name__}: {error}", decision="Analysis failed - needs review")
+        for row in result["trace"]:
+            if row["status"] == "pending":
+                row.update(status="skipped", output={"reason": "An earlier step failed."})
+    refresh()
     return result
+
+
+def clean_step(original):
+    image = clean_xray(original)
+    return image, image_record(image)
+
+
+def scope_step(original):
+    value = check_xray(get_checker(), original)
+    return value, value
+
+
+def classifier_step(original):
+    scores = predict(get_classifier(), original)
+    return scores, scores
+
+
+def comparison_step(scores):
+    hint = binary_hint(scores)
+    return hint, hint
+
+
+def show_trace(result):
+    st.subheader("Agent plan and execution")
+    st.caption("Deterministic controller: follows this plan and stops when scope checks fail. No autonomous reasoning is claimed.")
+    st.write(f"Elapsed: {result['elapsed']:.1f} seconds | Tool calls: {result['tool_calls']}")
+    st.caption("Tool calls count top-level cleaning, checking, classification, and generation calls, including failed attempts. Cached model loading and controller operations are excluded. Elapsed time updates at step transitions.")
+    for row in result["trace"]:
+        duration = "--" if row["seconds"] is None else f"{row['seconds']:.2f}s"
+        with st.expander(f"{row['step']} | {row['status']} | {row['tool']} | {duration}"):
+            st.write("Raw input (images represented by size, mode, and pixel hash)")
+            st.json(row["input"])
+            st.write("Raw output")
+            st.json(row["output"])
 
 
 # Keep a new upload or changed settings from displaying a previous image's answer.
 def reset_stale_result(content, version, compare):
     fingerprint = hashlib.sha256(content).hexdigest()
     prompt_text = json.dumps(PROMPTS[version], sort_keys=True)
-    key = (fingerprint, version, prompt_text, compare)
+    key = ("scope-controller-v1", fingerprint, version, prompt_text, compare,
+           json.dumps(PROMPTS["2c_v1"], sort_keys=True),
+           config.XRAY_SIMILARITY_LIMIT, config.OUT_OF_SCOPE_LIMIT, config.CONFIDENCE_LIMIT)
     if st.session_state.get("analysis_key") != key:
         st.session_state.pop("analysis_result", None)
         st.session_state.analysis_key = key
@@ -218,7 +330,7 @@ def reset_stale_result(content, version, compare):
 
 # Show all four independent scores, using a distinct row and bar for the raw top class.
 def show_scores(result):
-    st.subheader("MedSigLIP · four-class scores")
+    st.subheader("MedSigLIP - four-class sigmoid scores")
     scores = result["scores"]
     for label in config.CLASS_NAMES:
         top = label == result["top_class"]
@@ -233,112 +345,107 @@ def show_scores(result):
             f'<div class="score-track"><div class="score-fill" style="width:{score * 100:.2f}%"></div></div></div>',
             unsafe_allow_html=True,
         )
-    st.caption("Independent model scores, not diagnostic certainty. They need not sum to one.")
+    st.caption("Independent sigmoid scores, not diagnostic certainty. They need not sum to one.")
     if result["top_class"] not in CLASSES:
         st.caption(f"Note: the raw top class is {result['top_class']}. The hint below compares only Normal and Pneumonia.")
 
 
-# Keep the final labels visible side by side, with an explicit agreement badge.
 def show_result(result):
-    if "hybrid" not in result:
-        return
-    hint = result["hint"]["label"]
-    final = result["hybrid"]["label"]
-    badge = "Agree"
-    badge_style = "agree"
-    if final == "Other":
-        badge = "Not recognized"
-        badge_style = "other"
-    elif hint != final:
-        badge = "Disagree"
-        badge_style = "disagree"
     with st.container(border=True):
-        st.markdown(f'<div class="result-heading">Final result <span class="badge {badge_style}">{badge}</span></div>', unsafe_allow_html=True)
-        left, right = st.columns(2)
-        left.metric("MedSigLIP hint", hint)
-        right.metric("MedGemma final answer", final)
-        if final == "Other":
-            st.warning("MedGemma's answer was not recognized as exactly Normal or Pneumonia.")
-        elif badge == "Disagree":
-            st.warning("The two models disagree. Review both outputs; this prototype cannot resolve the disagreement clinically.")
-        st.caption("Selected prompt: " + prompt_label(result["version"]))
-        st.caption("Any confidence wording in the prompt refers to a rescaled model score, not calibrated diagnostic certainty.")
-        if not result["uses_hint"]:
-            st.caption("The selected prompt received no classifier hint. Agreement here is a comparison only.")
-        st.caption("Model agreement does not establish that either answer is correct.")
-    if "alone" in result:
-        st.metric("MedGemma alone · no hint", result["alone"]["label"])
-        if result["alone"]["label"] == "Other":
-            st.warning("The no-hint MedGemma answer was not recognized.")
-    with st.expander("Model responses and supplied prompt"):
-        st.write("**Selected prompt response**")
+        st.subheader("Final decision")
+        st.header(result.get("decision", "Running analysis"))
+        st.caption("Model output, not a verified diagnosis.")
+        if "agreement" in result:
+            st.write("Agreement status: " + result["agreement"])
+    if "scores" in result:
+        show_scores(result)
+    if "hint" in result:
+        st.write("**Normal vs Pneumonia - rescaled two-class comparison**")
+        for column, label in zip(st.columns(2), CLASSES):
+            column.metric(label, f"{result['hint']['scores'][label]:.1%}")
+        st.caption("Raw score divided by the sum of the two scores. Not calibrated probabilities.")
+    if "hybrid" in result:
+        st.write("**MedGemma raw answer**")
         st.code(result["hybrid"]["raw"], language=None)
-        if "alone" in result:
-            st.write("**No-hint raw response**")
-            st.code(result["alone"]["raw"], language=None)
-        st.write(result["prompt"]["user"])
-    if "elapsed" in result:
-        st.caption(f"Analysis completed in {result['elapsed']:.1f} seconds.")
+        st.caption("Selected prompt: " + prompt_label(result["version"]))
+        if not result["uses_hint"]:
+            st.caption("No classifier prediction was sent to this prompt.")
+        with st.expander("Full supplied prompt and example context"):
+            st.json(result["trace"][5]["input"])
+    if "alone" in result:
+        st.write("**MedGemma alone - no hint or examples**")
+        st.code(result["alone"]["raw"], language=None)
+    if "error" in result:
+        st.write("Analysis could not finish. Check model access, saved files, and available memory.")
+        with st.expander("Error details"):
+            st.code(result["error"], language=None)
 
 
-# Keep the uploader and image on the left, with model evidence and final output on the right.
 def show_analysis(version, compare):
-    left, right = st.columns([1, 1.2], gap="large")
+    uploaded = st.file_uploader("Upload a chest X-ray", type=["jpg", "jpeg", "png"])
     original = None
-    with left:
-        with st.container(border=True):
-            st.subheader("Your chest X-ray")
-            st.caption("Choose a JPG or PNG to begin.")
-            uploaded = st.file_uploader("Upload a chest X-ray", type=["jpg", "jpeg", "png"])
-            if uploaded is None:
-                st.session_state.pop("analysis_result", None)
-                st.info("Your image preview will appear here.")
-            else:
-                try:
-                    content = uploaded.getvalue()
-                    with Image.open(io.BytesIO(content)) as source:
-                        original = source.convert("RGB")
-                    st.image(original, caption="Uploaded image", use_container_width=True)
-                    st.caption("A cleaned copy is passed to the models.")
-                    if version is not None:
-                        reset_stale_result(content, version, compare)
-                except (UnidentifiedImageError, OSError, ValueError, Image.DecompressionBombError):
-                    st.session_state.pop("analysis_result", None)
-                    st.error("This file could not be opened. Please choose a readable JPG or PNG image.")
-    with right:
-        st.subheader("Image analysis")
-        st.write("Review the classifier evidence, then compare it with MedGemma's answer.")
-        run = st.button("Analyze X-ray", type="primary", use_container_width=True, disabled=original is None or version is None)
-        if run:
+    if uploaded is None:
+        st.session_state.pop("analysis_result", None)
+    else:
+        try:
+            content = uploaded.getvalue()
+            with Image.open(io.BytesIO(content)) as source:
+                original = source.convert("RGB")
+            if version is not None:
+                reset_stale_result(content, version, compare)
+        except (UnidentifiedImageError, OSError, ValueError, Image.DecompressionBombError):
             st.session_state.pop("analysis_result", None)
-            try:
-                st.session_state.analysis_result = analyze(original, version, compare)
-            except Exception as error:
-                result = st.session_state.get("analysis_result", {})
-                result["error"] = f"{type(error).__name__}: {error}"
-                st.session_state.analysis_result = result
-        result = st.session_state.get("analysis_result")
-        if result:
-            if "scores" in result:
-                show_scores(result)
-                with st.container(border=True):
-                    st.write("**Normal vs Pneumonia · rescaled hint scores**")
-                    columns = st.columns(2)
-                    for column, label in zip(columns, CLASSES):
-                        column.metric(label, f"{result['hint']['scores'][label]:.1%}")
-                    st.caption("Each raw score divided by their sum; these are not calibrated probabilities.")
-            if "error" in result:
-                st.error("Analysis could not finish. Check model access, saved weights, and available memory, then retry.")
-                with st.expander("Error details"):
-                    st.code(result["error"], language=None)
+            st.error("This file could not be opened. Please choose a readable JPG or PNG image.")
+    if version is None:
+        st.session_state.pop("analysis_result", None)
+    run = st.button("Run analysis", type="primary", disabled=original is None or version is None)
+    final_slot = st.empty()
+    images_slot = st.empty()
+    timeline_slot = st.empty()
+    if original is not None:
+        with images_slot.container():
+            st.image(original, caption="Original upload", width=300)
+    if run:
+        def render(result):
+            with final_slot.container():
+                st.subheader(result.get("decision", "Running analysis"))
+            if "cleaned" in result:
+                with images_slot.container():
+                    left, right = st.columns(2)
+                    left.image(original, caption="Original upload", use_container_width=True)
+                    right.image(result["cleaned"], caption="Cleaned image", use_container_width=True)
+            with timeline_slot.container():
+                show_trace(result)
+        analyze(original, version, compare, render)
+    result = st.session_state.get("analysis_result")
+    if result:
+        with final_slot.container():
             show_result(result)
-        else:
-            st.info("Upload an X-ray and select Analyze X-ray. Results will appear here.")
+        if "cleaned" in result:
+            with images_slot.container():
+                left, right = st.columns(2)
+                left.image(original, caption="Original upload", use_container_width=True)
+                right.image(result["cleaned"], caption="Cleaned image", use_container_width=True)
+        with timeline_slot.container():
+            show_trace(result)
+        summary = "\n".join(f"{row['step']}: {row['status']} | {row['tool']} | "
+                             + (f"{row['seconds']:.2f}s" if row['seconds'] is not None else "--")
+                             + (" | " + row['output']['reason'] if isinstance(row['output'], dict) and 'reason' in row['output'] else "")
+                             for row in result["trace"])
+        st.write("**Copyable agent trace**")
+        st.code(summary + f"\nDecision: {result['decision']}\nTool calls: {result['tool_calls']}\nElapsed: {result['elapsed']:.2f}s", language=None)
+    elif original is None:
+        st.info("Upload a chest X-ray to begin. No models are loaded until you run analysis.")
+    else:
+        st.write("**Agent plan**")
+        for name, tool in PLAN:
+            st.write(f"{name} | pending | {tool}")
 
 
 # Explain what the app does and the limits users need to understand its outputs.
 def show_about():
-    st.subheader("Two models, one research workflow")
+    st.subheader("Two models, one controlled research workflow")
+    st.write("A thin controller runs image cleaning, the existing scope checker, four-class classification, binary comparison, and MedGemma in order. Failed scope checks stop the run; disagreement needs review. Existing model logic, thresholds, and prompt text are unchanged.")
     # Use the shared labels so the table follows future dropdown renaming.
     prompt_rows = [
         {"Prompt": prompt_label("with_score"), "What it does": "Shows MedSigLIP's answer and rescaled model score."},
@@ -352,7 +459,7 @@ def show_about():
             st.markdown("**1 · MedSigLIP reads the image**")
             st.write("A frozen MedSigLIP backbone and trained four-class probe produce scores for COVID-19, Normal, Pneumonia, and Tuberculosis.")
             st.markdown("**2 · A binary hint is formed**")
-            st.write("Normal and Pneumonia scores are divided by their sum. Their higher score becomes the hint, even if another class led the four-class output.")
+            st.write("Normal and Pneumonia scores are divided by their sum. Their higher score becomes the comparison label only after the existing scope checks pass.")
             st.markdown("**3 · MedGemma gives the final label**")
             st.write("Frozen MedGemma receives the cleaned image and selected hint prompt. Choose a hint-based prompt or a no-hint prompt. The few-shot option supplies one solved Normal and one solved Pneumonia image. The optional comparison always omits hints and examples.")
     with right:
@@ -367,10 +474,10 @@ def show_about():
 
 # Render all tabs even when no image is uploaded; evaluation never loads a model.
 def main():
-    st.set_page_config(page_title="Chest X-Ray Hybrid", page_icon="🩻", layout="wide")
+    st.set_page_config(page_title="Chest X-Ray Hybrid", layout="wide")
     apply_style()
     st.markdown('<div class="eyebrow">CHEST X-RAY · RESEARCH WORKSPACE</div>', unsafe_allow_html=True)
-    st.title("Chest X-Ray Hybrid")
+    st.title("Chest X-Ray Agent Workspace")
     st.write("Classifier evidence. Image review. A transparent view of both model outputs.")
     st.markdown('<div class="research-banner"><strong>Research prototype. Not for clinical use.</strong></div>', unsafe_allow_html=True)
     version, compare = show_sidebar()

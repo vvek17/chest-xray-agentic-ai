@@ -68,6 +68,7 @@ Run every command from this folder.
 | `python -m training.train_probe` | train the 4-class probe (model chosen by `DINOV2_NAME` in `backend/config.py`) |
 | `python -m training.train_2class_probe` | train the Normal vs Pneumonia probe |
 | `python -m prompt_engineering.run_prompts` | prompt engineering with MedGemma (`MODE` = try / validate / test) |
+| `python -m prompt_engineering.run_prompt_logs` | record five current binary prompts on the same five Normal and five Pneumonia Training images; exploratory logs, not final accuracy |
 | `python -m backend.predict photo.png` | classify one X-ray in the terminal |
 | `streamlit run frontend/app.py --server.port 8502` | start the web page, then open http://localhost:8502 |
 | `python -m pytest` | run all tests (`-m "not slow"` for the fast ones only) |
@@ -117,7 +118,11 @@ in the prompt (for example "hazy") can make the model "see" it in healthy lungs.
 
 `frontend/app.py` displays the trained four-class MedSigLIP probe's scores and
 compares Normal versus Pneumonia using their rescaled scores. Frozen MedGemma
-then answers with the selected prompt. The sidebar offers Hint + score, Hint only,
+then answers with the selected prompt after the existing scope checker accepts the upload.
+The controller shows each step, timing and raw evidence. Scope failures stop the
+run; disagreement or an unrecognized answer returns “Needs review”. The optional
+no-hint comparison is displayed separately and does not vote on the decision.
+The sidebar offers Hint + score, Hint only,
 Double-check, No hint, and No hint + 2 examples. `CURRENT_VERSION` selects the
 default; the plain labels live in `PROMPT_LABELS` in the app.
 
@@ -198,3 +203,6 @@ Dataset images, model checkpoints, generated prediction logs, local manifests,
 and credentials are excluded from Git. Source code, tests, guides and project
 presentations are included. The test command for checks without real models is
 `python -m pytest -m "not slow"`.
+
+The [saved development prompts](docs/prompts/README.md) distinguish implemented
+interface/logging work from proposed patient-grouped evaluation and reporting.

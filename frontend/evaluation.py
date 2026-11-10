@@ -166,11 +166,22 @@ def show_prediction_files(folder):
 def show_evaluation(prompt_labels):
     st.subheader("Evaluation results")
     st.write("Compare saved conditions on the same evaluation images.")
-    st.caption("Saved evaluations may use raw hints and few-shot context. This app rescales binary hints; only the few-shot option supplies context examples. Check the saved report before comparing configurations.")
+    st.caption("Saved evaluations may use raw hints and few-shot context. This app first gates uploads with the existing scope checker and then rescales binary hints; only the few-shot option supplies context examples. Check the saved report before comparing configurations.")
     folder = RESULTS_DIR
     if not folder.exists():
         st.info("No evaluation files yet. Save your results in outputs/hybrid_siglip_medgemma/ to display them here.")
         return
+    with st.expander("Saved evaluation configuration"):
+        paths = [path for path in sorted(folder.glob("*.json"))
+                 if not path.name.endswith("_metrics.json")]
+        if not paths:
+            st.info("No configuration JSON files have been saved in this folder.")
+        for path in paths:
+            st.write(path.name)
+            try:
+                st.json(json.loads(path.read_text()))
+            except (OSError, ValueError, UnicodeError):
+                st.warning(f"Could not read {path.name}.")
     records = load_metrics(folder)
     if records:
         comparison_table(records, prompt_labels)
