@@ -1,0 +1,9 @@
+model,split,n,accuracy,precision_macro,recall_macro,f1_macro,loss
+combined,val,40,1.0,1.0,1.0,1.0,0.0153
+combined (unseen only),val,15,1.0,,,,
+combined,test,140,0.9929,0.993,0.9929,0.9929,0.0303
+combined (unseen only),test,41,1.0,,,,
+medgemma,val,40,0.875,0.8836,0.875,0.8743,n/a (no probabilities)
+medgemma (unseen only),val,15,0.8,,,,
+medgemma,test,140,0.8786,0.8824,0.8786,0.8783,n/a (no probabilities)
+medgemma (unseen only),test,41,0.8293,,,,

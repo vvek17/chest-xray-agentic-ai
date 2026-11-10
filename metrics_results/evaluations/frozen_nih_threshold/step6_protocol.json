@@ -1,0 +1,81 @@
+{
+  "step": 6,
+  "methods": [
+    "MedSigLIP",
+    "MedGemma",
+    "Fusion"
+  ],
+  "positive_class": "Pneumonia",
+  "validation_selected_winner": "MedSigLIP",
+  "thresholds_sha256": "6928037c69f86852fcc1358796afe69aba48b575c26b561a2197b727c06d7598",
+  "thresholds": {
+    "MedSigLIP": {
+      "threshold": -0.1631323341280222,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 57,
+        "FP": 43
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.57
+    },
+    "MedGemma": {
+      "threshold": -5.25,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 52,
+        "FP": 48
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.52
+    },
+    "Fusion": {
+      "threshold": -0.629323617337661,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 53,
+        "FP": 47
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.53
+    }
+  },
+  "dev_zscore": {
+    "means": [
+      -0.04725294791860506,
+      -0.8981250002980232
+    ],
+    "stds": [
+      0.2005010528679048,
+      6.435112755109048
+    ],
+    "ddof": 0,
+    "fitted_on": "dev only",
+    "order": [
+      "siglip_score",
+      "medgemma_score"
+    ]
+  },
+  "prompt": {
+    "system": "You are an expert radiologist.",
+    "user": "Look at this chest X-ray. Is it Normal or Pneumonia? Answer with exactly Normal or Pneumonia and nothing else.",
+    "max_tokens": 10
+  },
+  "final_manifest_sha256": "d39de4b444df384e0d3365f52613477fce9f8cb86cc70b8578c4823038b6887f",
+  "step1_protocol_sha256": "6e1412271f46c15d9033d9a5ff4763db89e64e5f0c1d1f684b859ea6226cb600",
+  "validation_report_sha256": "3e30d71126d54200e585df5a9335828a2a1d2981645f8d4de578dd8137db2f5d",
+  "runner_sha256": "dde9d9b8853cce0c59b43af6f6d66428137443fe725ab1b0fa660d94f0c96cf8",
+  "runtime": {
+    "device": "mps",
+    "medsiglip_revision": null,
+    "medgemma_revision": null,
+    "medsiglip_dtype": "torch.float16",
+    "medgemma_dtype": "torch.bfloat16"
+  },
+  "seed": 42,
+  "bootstrap_resamples": 2000,
+  "limitation": "This set was used in earlier project experiments; Step 6 uses frozen decisions without retuning."
+}

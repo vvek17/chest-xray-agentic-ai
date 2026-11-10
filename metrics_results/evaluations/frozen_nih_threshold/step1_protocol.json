@@ -1,0 +1,32 @@
+{
+  "step": 1,
+  "seed": 42,
+  "prompt": {
+    "system": "You are an expert radiologist.",
+    "user": "Look at this chest X-ray. Is it Normal or Pneumonia? Answer with exactly Normal or Pneumonia and nothing else.",
+    "max_tokens": 10
+  },
+  "device": "mps",
+  "models": [
+    "google/medsiglip-448",
+    "google/medgemma-1.5-4b-it"
+  ],
+  "medsiglip_texts": [
+    "a normal chest x-ray",
+    "a chest x-ray showing pneumonia"
+  ],
+  "split_hashes": {
+    "dev": "4cf52d803d908ab3adea54dfbdaa1b9430cd8848b65f60d2a9d74614b45c7d6d",
+    "validation": "005df248aaee57e27f19966ec32005f6e38df17d8ce21ae65cecfcc03da6a119"
+  },
+  "source_hashes": {
+    "training/score_frozen_nih.py": "f3a7ec1e0e24dba9391aa547abde454adbcc7ee83458dd3ca0c34dd86056da44",
+    "backend/frozen_scores.py": "525f8baa51ea223017d91bd63103ab0b61548f2434e41ab6148c70ada3268c58",
+    "backend/medgemma.py": "4e3561299e97b784dba779809d83084305740c920a4a21533c4675ae87baba1b",
+    "backend/zero_shot_ensemble.py": "e08d800a7566f9ee7f932af357d4f4f243572e0ebba4caa775d6951997c836d3",
+    "backend/clean_image.py": "49ea431e7199f94e76f9ee61a89e82b45f27b82ea9eb8294a45e6af23a9032cc"
+  },
+  "score_definition": "Full-vocabulary log_softmax at last prompt position, Pneumonia first token minus Normal first token",
+  "capture": "First model forward hook inside existing deterministic ask_medgemma; same prefill for score and greedy output",
+  "final_test_inference": false
+}

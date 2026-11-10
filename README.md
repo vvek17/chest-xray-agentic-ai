@@ -11,6 +11,10 @@ Two tools, both from Google, neither fine-tuned:
    **90.71%** on the fresh Normal vs Pneumonia test (127 / 140);
    the earlier test achieved 87.9% (123 / 140). These use different images and examples.
 
+## Metrics results for review
+
+The [metrics results and senior review guide](metrics_results/README.md) includes saved metric CSVs, prediction and prompt logs, curve images, confusion matrices, and run-status notes. Start there to review completed results and identify the main limitations.
+
 ## Project structure
 
 ```

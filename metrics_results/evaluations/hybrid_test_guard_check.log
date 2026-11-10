@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "prompt_engineering/evaluate_hybrid.py", line 582, in <module>
+    main()
+  File "prompt_engineering/evaluate_hybrid.py", line 574, in main
+    require_frozen(manifest)
+  File "prompt_engineering/evaluate_hybrid.py", line 546, in require_frozen
+    raise RuntimeError("Run --stage freeze before --stage test.")
+RuntimeError: Run --stage freeze before --stage test.

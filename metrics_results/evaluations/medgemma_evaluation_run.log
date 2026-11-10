@@ -1,0 +1,79 @@
+train: 1/40
+train: 2/40
+train: 3/40
+train: 4/40
+train: 5/40
+train: 6/40
+train: 7/40
+train: 8/40
+train: 9/40
+train: 10/40
+train: 11/40
+train: 12/40
+train: 13/40
+train: 14/40
+train: 15/40
+train: 16/40
+train: 17/40
+train: 18/40
+train: 19/40
+train: 20/40
+Loading google/medgemma-1.5-4b-it ...
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 9709.50it/s]
+train: 21/40
+train: 22/40
+train: 23/40
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "prompt_engineering/evaluate_medgemma.py", line 128, in <module>
+    main()
+  File "prompt_engineering/evaluate_medgemma.py", line 92, in main
+    answer = ask_medgemma(model, path, prompt, examples)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "backend/medgemma.py", line 72, in ask_medgemma
+    output = model.generate(**inputs, max_new_tokens=max_tokens, do_sample=False)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/generation/utils.py", line 2982, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/generation/utils.py", line 3182, in _sample
+    outputs = self._prefill(
+              ^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/generation/utils.py", line 4293, in _prefill
+    return self(**model_inputs, return_dict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 999, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 943, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 876, in forward
+    special_image_mask = self.get_placeholder_mask(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 808, in get_placeholder_mask
+    f"Image features and image tokens do not match, tokens: {n_image_tokens}, features: {n_image_features}",
+                                                            ^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/_tensor.py", line 1152, in __format__
+    return self.detach().item().__format__(format_spec)
+           ^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

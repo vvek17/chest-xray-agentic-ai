@@ -1,0 +1,7 @@
+{
+  "device": "mps",
+  "medsiglip_revision": null,
+  "medgemma_revision": null,
+  "medsiglip_dtype": "torch.float16",
+  "medgemma_dtype": "torch.bfloat16"
+}

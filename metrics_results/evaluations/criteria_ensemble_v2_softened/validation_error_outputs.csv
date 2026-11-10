@@ -1,0 +1,124 @@
+version,image_id,true,predicted,hint,raw_answer
+criteria_nohint,person1345_bacteria_3426,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: There is a left-sided chest tube in place with some residual left pleural effusion."
+criteria_nohint,person1667_bacteria_4418,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1391_bacteria_3536,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1657_bacteria_4398,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: There is no focal opacity in the lung fields."
+criteria_nohint,person1420_virus_2431,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1369_virus_2356,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: The lung fields appear clear with no focal consolidation or opacity."
+criteria_nohint,person1428_virus_2442,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: Diffuse bilateral interstitial opacities."
+criteria_nohint,person1634_bacteria_4334,Pneumonia,Normal,not provided,"Final answer: The heart appears enlarged.
+Final answer: Normal"
+criteria_nohint,person1292_virus_2218,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: The lung fields appear clear with no focal consolidation or significant opacity."
+criteria_nohint,person1619_bacteria_4261,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1685_virus_2903,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1855_bacteria_4727,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: The lung fields are clear with no focal consolidation or opacity."
+criteria_nohint,person1670_virus_2886,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1668_bacteria_4420,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1415_bacteria_3629,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: There is no focal opacity in the lung fields."
+criteria_nohint,person1308_bacteria_3288,Pneumonia,Normal,not provided,"Findings: Cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal"
+criteria_nohint,person1348_virus_2326,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: Diffuse bilateral patchy opacities are present in the lung fields."
+criteria_nohint,person1298_virus_2228,Pneumonia,Normal,not provided,"Final answer: Normal
+Final answer: Normal"
+criteria_nohint,person1438_bacteria_3721,Pneumonia,Normal,not provided,"Final answer: Normal
+Key finding: The lungs are clear with no focal consolidation or opacity."
+criteria_hint,person1345_bacteria_3426,Pneumonia,Normal,Pneumonia,"Findings: A left-sided chest tube is present. There is a small right pleural effusion. The left lung is clear. The right lung shows some atelectasis.
+
+Final answer: Normal"
+criteria_hint,person1667_bacteria_4418,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,person1391_bacteria_3536,Pneumonia,Normal,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_hint,person1420_virus_2431,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,person1369_virus_2356,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,Normal-3444,Normal,Pneumonia,Pneumonia,"Findings: There is a left upper lobe opacity.
+Final answer: Pneumonia"
+criteria_hint,person1428_virus_2442,Pneumonia,Normal,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_hint,Normal-3216,Normal,Pneumonia,Normal,"Findings: There is a rounded opacity in the left lower lobe.
+Final answer: Pneumonia"
+criteria_hint,person1634_bacteria_4334,Pneumonia,Normal,Pneumonia,"Findings: Cardiomegaly.
+Final answer: Normal"
+criteria_hint,person1292_virus_2218,Pneumonia,Normal,Pneumonia,"Findings: The lungs appear clear with no focal consolidation or significant opacities.
+Final answer: Normal"
+criteria_hint,person1685_virus_2903,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,person1855_bacteria_4727,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,person1670_virus_2886,Pneumonia,Normal,Pneumonia,"Findings: The heart size appears borderline enlarged. The lung fields are clear without focal consolidation, air bronchograms, or significant interstitial changes. The costophrenic angles are sharp.
+
+Final answer: Normal"
+criteria_hint,person1668_bacteria_4420,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,person1308_bacteria_3288,Pneumonia,Normal,Pneumonia,"Findings: Cardiomegaly and pulmonary edema.
+Final answer: Normal"
+criteria_hint,person1298_virus_2228,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint,Normal-3471,Normal,Pneumonia,Normal,"Findings: There is a nodular opacity in the right upper lobe.
+Final answer: Pneumonia"
+criteria_hint,person1438_bacteria_3721,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_nohint_softened,person1345_bacteria_3426,Pneumonia,Normal,not provided,"Findings: A left-sided chest tube is present. There is a small left pleural effusion and atelectasis in the left lower lobe. The right lung is clear.
+
+Final answer: Normal"
+criteria_nohint_softened,person1667_bacteria_4418,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1391_bacteria_3536,Pneumonia,Normal,not provided,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_nohint_softened,person1420_virus_2431,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1369_virus_2356,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1428_virus_2442,Pneumonia,Normal,not provided,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_nohint_softened,person1634_bacteria_4334,Pneumonia,Normal,not provided,"Findings: Cardiomegaly and mild pulmonary edema.
+Final answer: Normal"
+criteria_nohint_softened,person1292_virus_2218,Pneumonia,Normal,not provided,"Findings: Mild bilateral interstitial markings.
+Final answer: Normal"
+criteria_nohint_softened,person1685_virus_2903,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1855_bacteria_4727,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1670_virus_2886,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1668_bacteria_4420,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_nohint_softened,person1308_bacteria_3288,Pneumonia,Normal,not provided,"Findings: Cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal"
+criteria_nohint_softened,person1348_virus_2326,Pneumonia,Normal,not provided,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_nohint_softened,person1438_bacteria_3721,Pneumonia,Normal,not provided,Final answer: Normal
+criteria_hint_softened,person1345_bacteria_3426,Pneumonia,Normal,Pneumonia,"Findings: A left-sided chest tube is present. There is a small left pleural effusion and atelectasis in the left lower lobe. The right lung is clear.
+
+Final answer: Normal"
+criteria_hint_softened,person1667_bacteria_4418,Pneumonia,Normal,Pneumonia,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+criteria_hint_softened,person1391_bacteria_3536,Pneumonia,Normal,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_hint_softened,person1420_virus_2431,Pneumonia,Normal,Pneumonia,"Findings: The lungs are clear, heart size is normal, and there is no evidence of consolidation or effusion.
+Final answer: Normal"
+criteria_hint_softened,person1369_virus_2356,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint_softened,Normal-3444,Normal,Pneumonia,Pneumonia,"Findings: There is a left-sided picc line. The left lung shows a mass-like opacity in the upper lobe. The right lung appears clear. The heart size and mediastinal contours are within normal limits. There is no pleural effusion.
+
+Final answer: Pneumonia"
+criteria_hint_softened,person1428_virus_2442,Pneumonia,Normal,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+criteria_hint_softened,person1634_bacteria_4334,Pneumonia,Normal,Pneumonia,"Findings: The heart appears enlarged, and there is some increased opacity in the lung fields, possibly representing mild pulmonary edema or atelectasis.
+
+Final answer: Normal"
+criteria_hint_softened,person1292_virus_2218,Pneumonia,Normal,Pneumonia,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial thickening. The heart size and mediastinal contours are within normal limits.
+
+Final answer: Normal"
+criteria_hint_softened,person1685_virus_2903,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint_softened,person1855_bacteria_4727,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint_softened,person1670_virus_2886,Pneumonia,Normal,Pneumonia,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal"
+criteria_hint_softened,person1668_bacteria_4420,Pneumonia,Normal,Pneumonia,Final answer: Normal
+criteria_hint_softened,person1308_bacteria_3288,Pneumonia,Normal,Pneumonia,"Findings: There is cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal"
+criteria_hint_softened,person1438_bacteria_3721,Pneumonia,Normal,Pneumonia,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal"

@@ -1,0 +1,67 @@
+{
+  "stage": 3,
+  "positive_class": "Pneumonia",
+  "prediction_rule": "score >= threshold",
+  "minimum_dev_sensitivity": 0.8,
+  "threshold_selection": "Maximum specificity subject to sensitivity >=0.80; ties use highest threshold",
+  "validation_selection": "Highest specificity subject to sensitivity >=0.75; ties use method definition order",
+  "method_order": [
+    "MedSigLIP",
+    "MedGemma",
+    "Fusion"
+  ],
+  "dev_zscore": {
+    "means": [
+      -0.04725294791860506,
+      -0.8981250002980232
+    ],
+    "stds": [
+      0.2005010528679048,
+      6.435112755109048
+    ],
+    "ddof": 0,
+    "fitted_on": "dev only",
+    "order": [
+      "siglip_score",
+      "medgemma_score"
+    ]
+  },
+  "dev_scores_sha256": "7dc3f8feb931d41b0843f708705fd469460ac357d39113b6aea56fcd161c1756",
+  "step2_sha256": "31584fd6ae4ff827f0979d93db0cd103140b38520f719026d81d6b1d26125a5a",
+  "evaluator_source_sha256": "52bc6dabc940ec1a88d8bd5600b99cf11c6accce6f430e10206b7713e62441bb",
+  "methods": {
+    "MedSigLIP": {
+      "threshold": -0.1631323341280222,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 57,
+        "FP": 43
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.57
+    },
+    "MedGemma": {
+      "threshold": -5.25,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 52,
+        "FP": 48
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.52
+    },
+    "Fusion": {
+      "threshold": -0.629323617337661,
+      "dev_counts": {
+        "TP": 80,
+        "FN": 20,
+        "TN": 53,
+        "FP": 47
+      },
+      "dev_sensitivity": 0.8,
+      "dev_specificity": 0.53
+    }
+  }
+}

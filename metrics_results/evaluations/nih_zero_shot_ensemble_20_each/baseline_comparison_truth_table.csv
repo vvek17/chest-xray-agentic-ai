@@ -1,0 +1,41 @@
+image_id,true_label,nih_labels,age,sex,view,medsiglip_prediction,normal_similarity,pneumonia_similarity,label_hint_prediction,label_hint_correct,label_hint_raw_answer,similarity_hint_prediction,similarity_hint_correct,similarity_hint_raw_answer,medgemma_no_hint_prediction,medgemma_no_hint_correct,medgemma_no_hint_raw_answer
+00000013_010,Pneumonia,Effusion|Pneumonia|Pneumothorax,60,M,AP,Pneumonia,-0.22079534828662872,-0.006381820887327194,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000032_012,Pneumonia,Atelectasis|Consolidation|Edema|Pneumonia,54,F,AP,Pneumonia,-0.3557053804397583,-0.07213272154331207,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000041_003,Normal,No Finding,62,F,PA,Pneumonia,-0.058757685124874115,-0.05815104767680168,Normal,True,Normal,Normal,True,Normal,Pneumonia,False,Pneumonia
+00000092_000,Normal,No Finding,54,F,PA,Pneumonia,-0.20388077199459076,0.016695966944098473,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000116_027,Normal,No Finding,74,F,AP,Pneumonia,-0.2901948392391205,-0.13772471249103546,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000149_000,Normal,No Finding,68,M,PA,Normal,-0.002831854857504368,-0.10649995505809784,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000150_002,Pneumonia,Atelectasis|Infiltration|Pneumonia,55,F,AP,Pneumonia,-0.1434725672006607,-0.06306980550289154,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000181_000,Normal,No Finding,45,F,PA,Pneumonia,-0.13297592103481293,-0.11941558122634888,Normal,True,Normal,Normal,True,Normal,Pneumonia,False,Pneumonia
+00000193_019,Pneumonia,Pneumonia,54,M,AP,Pneumonia,-0.20792627334594727,0.045789264142513275,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000211_013,Pneumonia,Cardiomegaly|Edema|Effusion|Infiltration|Pneumonia,59,F,AP,Pneumonia,-0.3146274983882904,-0.0264123622328043,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000218_000,Pneumonia,Infiltration|Pneumonia,33,M,PA,Pneumonia,-0.038015130907297134,0.18233506381511688,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000246_000,Normal,No Finding,50,M,PA,Normal,0.018195590004324913,-0.1653164178133011,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000312_000,Normal,No Finding,86,M,PA,Normal,0.058406926691532135,-0.028423186391592026,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000324_002,Normal,No Finding,32,M,PA,Pneumonia,-0.2146584689617157,0.08661405742168427,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000370_001,Normal,No Finding,66,F,PA,Normal,-0.024029940366744995,-0.04160922393202782,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000377_002,Normal,No Finding,54,F,AP,Pneumonia,-0.2981557846069336,-0.12441032379865646,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000398_002,Pneumonia,Infiltration|Pneumonia,64,F,PA,Pneumonia,-0.15511994063854218,0.16099640727043152,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000457_000,Normal,No Finding,33,M,PA,Pneumonia,-0.03290673717856407,-0.021700099110603333,Normal,True,Normal,Normal,True,Normal,Pneumonia,False,Pneumonia
+00000461_001,Normal,No Finding,84,F,PA,Pneumonia,0.007814178243279457,0.0197279192507267,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000467_001,Normal,No Finding,52,M,AP,Pneumonia,-0.2715517282485962,0.05244911462068558,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000468_029,Pneumonia,Cardiomegaly|Infiltration|Nodule|Pneumonia,31,M,AP,Pneumonia,-0.19038553535938263,-0.029205242171883583,Normal,False,Normal,Normal,False,Normal,Pneumonia,True,Pneumonia
+00000506_013,Pneumonia,Edema|Effusion|Pneumonia,27,M,AP,Pneumonia,-0.1729564517736435,-0.020659390836954117,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000533_000,Normal,No Finding,65,F,PA,Normal,0.0739700049161911,-0.0744229108095169,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000583_034,Pneumonia,Atelectasis|Infiltration|Pneumonia,40,F,AP,Pneumonia,-0.25426429510116577,-0.1308772712945938,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00000618_000,Normal,No Finding,54,F,PA,Pneumonia,-0.0481809563934803,0.11078337579965591,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00000643_000,Normal,No Finding,40,F,PA,Normal,0.0727238580584526,-0.08419691026210785,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000732_003,Normal,No Finding,85,F,PA,Pneumonia,-0.24622902274131775,-0.09762208163738251,Normal,True,Normal,Normal,True,Normal,Pneumonia,False,Pneumonia
+00000740_001,Normal,No Finding,80,M,AP,Normal,-0.07302281260490417,-0.10283015668392181,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000744_000,Normal,No Finding,68,M,PA,Normal,0.040939394384622574,-0.13502418994903564,Normal,True,Normal,Normal,True,Normal,Normal,True,Normal
+00000756_000,Normal,No Finding,50,M,PA,Normal,-0.10527631640434265,-0.15465861558914185,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia,Pneumonia,False,Pneumonia
+00001247_011,Pneumonia,Pneumonia,43,M,AP,Normal,0.10926877707242966,-0.05885021388530731,Normal,False,Normal,Normal,False,Normal,Normal,False,Normal
+00001248_003,Pneumonia,Consolidation|Effusion|Pneumonia,38,F,PA,Pneumonia,-0.23703549802303314,0.013664757832884789,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00001373_010,Pneumonia,Cardiomegaly|Effusion|Pneumonia,58,M,AP,Pneumonia,-0.13487569987773895,-0.05890155956149101,Normal,False,Normal,Normal,False,Normal,Pneumonia,True,Pneumonia
+00001437_019,Pneumonia,Pneumonia,30,F,AP,Pneumonia,-0.167129784822464,-0.03312765061855316,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00001582_017,Pneumonia,Infiltration|Mass|Pneumonia,32,F,PA,Normal,0.20346897840499878,-0.034522250294685364,Normal,False,Normal,Normal,False,Normal,Normal,False,Normal
+00001736_010,Pneumonia,Atelectasis|Consolidation|Effusion|Pneumonia,32,F,AP,Pneumonia,-0.25769734382629395,-0.137613907456398,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00001836_010,Pneumonia,Consolidation|Fibrosis|Nodule|Pneumonia,49,F,AP,Pneumonia,-0.28281426429748535,-0.03691640496253967,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00001933_000,Pneumonia,Consolidation|Pneumonia,40,F,PA,Normal,0.1043967679142952,-6.125448271632195e-05,Pneumonia,True,Pneumonia,Normal,False,Normal,Pneumonia,True,Pneumonia
+00001946_015,Pneumonia,Infiltration|Pleural_Thickening|Pneumonia,19,M,PA,Pneumonia,-0.15613161027431488,0.1591252088546753,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia,Pneumonia,True,Pneumonia
+00002061_000,Pneumonia,Nodule|Pleural_Thickening|Pneumonia,57,M,PA,Normal,0.07650680840015411,-0.14803731441497803,Normal,False,Normal,Normal,False,Normal,Normal,False,Normal

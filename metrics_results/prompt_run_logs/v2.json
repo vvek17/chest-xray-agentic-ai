@@ -1,0 +1,421 @@
+{
+  "prompt_name": "v2",
+  "prompt_content": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.\n\nClassify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+  "prompt_definition": {
+    "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+    "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+    "max_tokens": 80
+  },
+  "seed": 42,
+  "image_paths": [
+    "data/processed/Training/Normal/CHNCXR_0173_0.png",
+    "data/processed/Training/Normal/MCUCXR_0052_0.png",
+    "data/processed/Training/Normal/NORMAL2-IM-0425-0001.jpeg",
+    "data/processed/Training/Normal/NORMAL2-IM-0664-0001.jpeg",
+    "data/processed/Training/Normal/Normal-100.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-1389.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-177.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-2301.png",
+    "data/processed/Training/Pneumonia/person70_virus_130.jpeg",
+    "data/processed/Training/Covid-19/sub-S307988_ses-E33931_run-1_bp-chest_vp-ap_dx-corrected.png"
+  ],
+  "run_mode": "offline exploration; scope failures retained; not clinical output",
+  "timing_note": "Wall time includes lazy model loading on first use; null means not reached.",
+  "total_time_s": 41.98331904099905,
+  "results": [
+    {
+      "image_path": "data/processed/Training/Normal/CHNCXR_0173_0.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.09469376504421234,
+          "normal": 0.9151173233985901,
+          "pneumonia": 0.028204891830682755,
+          "tuberculosis": 0.050166476517915726
+        },
+        "medgemma_raw": "The chest X-ray shows clear lungs with no visible consolidation, opacities, or infiltrates.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.07733620901126415,
+        "classifier": 0.18051033400115557,
+        "scope_check": 0.17028054199181497,
+        "prompt": 4.750007065013051e-06,
+        "medgemma": 3.5570408340136055,
+        "total": 3.985210332990391
+      },
+      "final_output": "Normal",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9999899864196777,
+        "message": "Model output: Normal (100.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9999899864196777,
+          "Pneumonia": 6.6750535552273504e-06
+        },
+        "xray_score": 0.8525546193122864,
+        "out_of_scope_score": 0.14486024156212807
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/MCUCXR_0052_0.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.07384304702281952,
+          "normal": 0.7691349983215332,
+          "pneumonia": 0.07071954011917114,
+          "tuberculosis": 0.025777241215109825
+        },
+        "medgemma_raw": "The chest X-ray shows a normal heart size and clear lung fields.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.1553177500027232,
+        "classifier": 0.20309783398988657,
+        "scope_check": 0.1768361249996815,
+        "prompt": 4.582980182021856e-06,
+        "medgemma": 3.1769039159989916,
+        "total": 3.712180249975063
+      },
+      "final_output": "Normal",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9999972581863403,
+        "message": "Model output: Normal (100.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9999972581863403,
+          "Pneumonia": 1.9464473552943673e-06
+        },
+        "xray_score": 0.768774151802063,
+        "out_of_scope_score": 0.09962028823792934
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0425-0001.jpeg",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.043805744498968124,
+          "normal": 0.6944328546524048,
+          "pneumonia": 0.3237486779689789,
+          "tuberculosis": 0.0712495669722557
+        },
+        "medgemma_raw": "The chest X-ray shows bilateral patchy opacities, predominantly in the lower lung fields.\nAnswer: Covid-19",
+        "medgemma_label": "Covid-19"
+      },
+      "time_s": {
+        "clean": 0.02506849999190308,
+        "classifier": 0.17854512500343844,
+        "scope_check": 0.17187933399691246,
+        "prompt": 5.750014679506421e-06,
+        "medgemma": 4.038404165999964,
+        "total": 4.413926874985918
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9001134037971497,
+        "message": "Model output: Normal (90.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9001134037971497,
+          "Pneumonia": 0.08501564711332321
+        },
+        "xray_score": 0.8360902070999146,
+        "out_of_scope_score": 0.11505531147122383
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0664-0001.jpeg",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.24478444457054138,
+          "normal": 0.5294824838638306,
+          "pneumonia": 0.21879839897155762,
+          "tuberculosis": 0.017905844375491142
+        },
+        "medgemma_raw": "The chest X-ray shows mild bilateral interstitial opacities, predominantly in the lower lung zones.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.02385633299127221,
+        "classifier": 0.17324216701672412,
+        "scope_check": 0.18598716700216755,
+        "prompt": 6.707996362820268e-06,
+        "medgemma": 3.7603585420001764,
+        "total": 4.143484250002075
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.8603024482727051,
+        "out_of_scope_score": 0.2626902889460325
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/Normal-100.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.9617521166801453,
+          "normal": 0.49238595366477966,
+          "pneumonia": 0.0003018509887624532,
+          "tuberculosis": 0.0009391489438712597
+        },
+        "medgemma_raw": "The chest X-ray shows mild bilateral interstitial opacities and cardiomegaly.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.005216249992372468,
+        "classifier": 0.1616937500075437,
+        "scope_check": 0.15643087498028763,
+        "prompt": 5.375011824071407e-06,
+        "medgemma": 3.482178792008199,
+        "total": 3.8055434160050936
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.6628163456916809,
+        "out_of_scope_score": 0.9626912656240165
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-1389.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.008614521473646164,
+          "normal": 0.030886109918355942,
+          "pneumonia": 0.029480500146746635,
+          "tuberculosis": 0.9999953508377075
+        },
+        "medgemma_raw": "The chest X-ray shows consolidation and opacities in the left upper and mid lung zones.\nAnswer: Pneumonia",
+        "medgemma_label": "Pneumonia"
+      },
+      "time_s": {
+        "clean": 0.004250166995916516,
+        "classifier": 0.1613794169970788,
+        "scope_check": 0.1612880419997964,
+        "prompt": 5.583016900345683e-06,
+        "medgemma": 3.8118221249897033,
+        "total": 4.138772208010778
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7850456237792969,
+        "out_of_scope_score": 1.0086098723113537
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-177.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.05823371186852455,
+          "normal": 0.060678545385599136,
+          "pneumonia": 0.005960526410490274,
+          "tuberculosis": 0.9998766183853149
+        },
+        "medgemma_raw": "The chest X-ray shows a left-sided chest tube with associated opacities in the left upper lobe.\nAnswer: Covid-19",
+        "medgemma_label": "Covid-19"
+      },
+      "time_s": {
+        "clean": 0.0055064169864635915,
+        "classifier": 0.16724091599462554,
+        "scope_check": 0.1614830000034999,
+        "prompt": 5.2089744713157415e-06,
+        "medgemma": 4.144383000006201,
+        "total": 4.478648166987114
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7536831498146057,
+        "out_of_scope_score": 1.0581103302538395
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-2301.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.001342118950560689,
+          "normal": 0.6769506931304932,
+          "pneumonia": 0.0038350021932274103,
+          "tuberculosis": 0.9999624490737915
+        },
+        "medgemma_raw": "The chest X-ray shows clear lungs with no opacities.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.00522104199626483,
+        "classifier": 0.17479858300066553,
+        "scope_check": 0.1664842499885708,
+        "prompt": 5.959009286016226e-06,
+        "medgemma": 3.729359541001031,
+        "total": 4.07588829100132
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7963261604309082,
+        "out_of_scope_score": 1.0013045680243522
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Pneumonia/person70_virus_130.jpeg",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.014925869181752205,
+          "normal": 0.1881323754787445,
+          "pneumonia": 0.997757613658905,
+          "tuberculosis": 0.004394995979964733
+        },
+        "medgemma_raw": "The chest X-ray shows clear lungs with no obvious consolidation, opacities, or infiltrates.\nAnswer: Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.009109332982916385,
+        "classifier": 0.17921958299120888,
+        "scope_check": 0.19317304098512977,
+        "prompt": 1.8499995348975062e-05,
+        "medgemma": 4.13589974999195,
+        "total": 4.517441708012484
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Pneumonia",
+        "confidence": 0.9773449897766113,
+        "message": "Model output: Pneumonia (97.7% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.022497761994600296,
+          "Pneumonia": 0.9773449897766113
+        },
+        "xray_score": 0.8896851539611816,
+        "out_of_scope_score": 0.019320865161716938
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Covid-19/sub-S307988_ses-E33931_run-1_bp-chest_vp-ap_dx-corrected.png",
+      "input": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+      "output": {
+        "scores": {
+          "covid19": 0.9999387264251709,
+          "normal": 0.011775611899793148,
+          "pneumonia": 0.09249161183834076,
+          "tuberculosis": 0.004341864492744207
+        },
+        "medgemma_raw": "The chest X-ray shows patchy opacities in the right lower lung field and left mid-lung field, along with cardiomegaly.\nAnswer: Pneumonia",
+        "medgemma_label": "Pneumonia"
+      },
+      "time_s": {
+        "clean": 0.018701624998357147,
+        "classifier": 0.16501112500554882,
+        "scope_check": 0.1766924999828916,
+        "prompt": 5.457986844703555e-06,
+        "medgemma": 4.341771250008605,
+        "total": 4.702210458985064
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.653247058391571,
+        "out_of_scope_score": 1.004280590917915
+      },
+      "system_input": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+      "prompt_settings": {
+        "system": "You are an expert thoracic radiologist. You classify chest X-rays into exactly one of four classes.",
+        "user": "Classify this chest X-ray as exactly one of: Covid-19, Normal, Pneumonia, Tuberculosis.\nTypical signs:\n- Covid-19: hazy ground-glass opacities, usually in both lungs, often in the outer and lower parts.\n- Pneumonia: dense consolidation, often in one lobe or on one side.\n- Tuberculosis: patchy opacities, nodules or cavities, mainly in the upper lobes, sometimes scarring.\n- Normal: clear lungs with no opacities.\nFirst, describe the main findings in one short sentence. Then, on a new line, write 'Answer:' followed by one class name.",
+        "max_tokens": 80
+      },
+      "examples": []
+    }
+  ]
+}

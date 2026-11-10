@@ -1,0 +1,21 @@
+path,true,answer,predicted
+data/processed/Training/Normal/NORMAL2-IM-1376-0001.jpeg,Normal,Normal=0.9256 Pneumonia=0.0078,Normal
+data/processed/Training/Pneumonia/person978_bacteria_2904.jpeg,Pneumonia,Normal=0.0052 Pneumonia=0.9946,Pneumonia
+data/processed/Training/Normal/NORMAL2-IM-0587-0001.jpeg,Normal,Normal=0.9769 Pneumonia=0.0030,Normal
+data/processed/Training/Pneumonia/person351_bacteria_1619.jpeg,Pneumonia,Normal=0.0056 Pneumonia=0.9942,Pneumonia
+data/processed/Training/Normal/NORMAL2-IM-0975-0001.jpeg,Normal,Normal=0.9788 Pneumonia=0.0033,Normal
+data/processed/Testing/Pneumonia/person383_bacteria_1750.jpeg,Pneumonia,Normal=0.0062 Pneumonia=0.9936,Pneumonia
+data/processed/Training/Normal/CHNCXR_0290_0.png,Normal,Normal=0.9756 Pneumonia=0.0030,Normal
+data/processed/Training/Pneumonia/person916_bacteria_2841.jpeg,Pneumonia,Normal=0.0053 Pneumonia=0.9945,Pneumonia
+data/processed/Training/Normal/Normal-2635.png,Normal,Normal=0.9714 Pneumonia=0.0023,Normal
+data/processed/Training/Pneumonia/person1136_bacteria_3078.jpeg,Pneumonia,Normal=0.0064 Pneumonia=0.9934,Pneumonia
+data/processed/Testing/Normal/CHNCXR_0241_0.png,Normal,Normal=0.9685 Pneumonia=0.0032,Normal
+data/processed/Testing/Pneumonia/person301_virus_622.jpeg,Pneumonia,Normal=0.9150 Pneumonia=0.0749,Normal
+data/processed/Testing/Normal/NORMAL2-IM-1278-0001.jpeg,Normal,Normal=0.9776 Pneumonia=0.0029,Normal
+data/processed/Training/Pneumonia/person382_bacteria_1740.jpeg,Pneumonia,Normal=0.0054 Pneumonia=0.9944,Pneumonia
+data/processed/Training/Normal/Normal-2639.png,Normal,Normal=0.9679 Pneumonia=0.0022,Normal
+data/processed/Training/Pneumonia/person740_virus_1363.jpeg,Pneumonia,Normal=0.0053 Pneumonia=0.9945,Pneumonia
+data/processed/Training/Normal/NORMAL2-IM-0895-0001.jpeg,Normal,Normal=0.9787 Pneumonia=0.0030,Normal
+data/processed/Testing/Pneumonia/person160_virus_316.jpeg,Pneumonia,Normal=0.0379 Pneumonia=0.9613,Pneumonia
+data/processed/Training/Normal/Normal-2985.png,Normal,Normal=0.9594 Pneumonia=0.0023,Normal
+data/processed/Training/Pneumonia/person594_virus_1145.jpeg,Pneumonia,Normal=0.0600 Pneumonia=0.9385,Pneumonia

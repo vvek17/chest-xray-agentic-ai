@@ -1,0 +1,35 @@
+model,metric,value,detail
+page_4class,accuracy_all,0.065,13/200
+page_4class,recall_Normal,0.13,13/100
+page_4class,recall_Pneumonia,0.0,0/100
+page_4class,pneumonia_precision,0.0,tp=0 fp=1
+page_4class,pneumonia_recall,0.0,tp=0 fn=100
+page_4class,pneumonia_f1,0.0,
+page_4class,true_pos,0,
+page_4class,false_pos,1,
+page_4class,false_neg,100,
+page_4class,true_neg,99,
+page_4class,wrong_count,187,
+page_4class,mean_confidence_when_wrong,0.91,
+page_4class,wrong_and_over_80pct_sure,155,
+page_4class,times_it_said_Covid-19,179,
+page_4class,times_it_said_Normal,19,
+page_4class,times_it_said_Pneumonia,1,
+page_4class,times_it_said_Tuberculosis,1,
+probe_2class,accuracy_all,0.67,134/200
+probe_2class,recall_Normal,0.84,84/100
+probe_2class,recall_Pneumonia,0.5,50/100
+probe_2class,pneumonia_precision,0.7576,tp=50 fp=16
+probe_2class,pneumonia_recall,0.5,tp=50 fn=50
+probe_2class,pneumonia_f1,0.6024,
+probe_2class,true_pos,50,
+probe_2class,false_pos,16,
+probe_2class,false_neg,50,
+probe_2class,true_neg,84,
+probe_2class,wrong_count,66,
+probe_2class,mean_confidence_when_wrong,0.9033,
+probe_2class,wrong_and_over_80pct_sure,52,
+probe_2class,times_it_said_Normal,134,
+probe_2class,times_it_said_Pneumonia,66,
+page_4class,out_of_scope_flagged,197,/200
+page_4class,low_confidence_warning,44,/200

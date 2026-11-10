@@ -1,0 +1,10 @@
+{
+  "stage": "extracting_frozen_features",
+  "split": "train",
+  "newly_cached_this_run": 44,
+  "missing_at_start": 13229,
+  "elapsed_seconds": 178.2,
+  "estimated_remaining_seconds": 53399.6,
+  "test_images_processed": 0,
+  "current_batch_errors": 0
+}

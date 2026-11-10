@@ -1,0 +1,421 @@
+{
+  "prompt_name": "v1",
+  "prompt_content": "You are an expert radiologist.\n\nLook at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+  "prompt_definition": {
+    "system": "You are an expert radiologist.",
+    "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+    "max_tokens": 20
+  },
+  "seed": 42,
+  "image_paths": [
+    "data/processed/Training/Normal/CHNCXR_0173_0.png",
+    "data/processed/Training/Normal/MCUCXR_0052_0.png",
+    "data/processed/Training/Normal/NORMAL2-IM-0425-0001.jpeg",
+    "data/processed/Training/Normal/NORMAL2-IM-0664-0001.jpeg",
+    "data/processed/Training/Normal/Normal-100.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-1389.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-177.png",
+    "data/processed/Training/Tuberculosis/Tuberculosis-2301.png",
+    "data/processed/Training/Pneumonia/person70_virus_130.jpeg",
+    "data/processed/Training/Covid-19/sub-S307988_ses-E33931_run-1_bp-chest_vp-ap_dx-corrected.png"
+  ],
+  "run_mode": "offline exploration; scope failures retained; not clinical output",
+  "timing_note": "Wall time includes lazy model loading on first use; null means not reached.",
+  "total_time_s": 23.921902707981644,
+  "results": [
+    {
+      "image_path": "data/processed/Training/Normal/CHNCXR_0173_0.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.09469376504421234,
+          "normal": 0.9151173233985901,
+          "pneumonia": 0.028204891830682755,
+          "tuberculosis": 0.050166476517915726
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.04919666700880043,
+        "classifier": 0.17969633301254362,
+        "scope_check": 0.19829008300439455,
+        "prompt": 5.291018169373274e-06,
+        "medgemma": 2.0612950829963665,
+        "total": 2.4885037079802714
+      },
+      "final_output": "Normal",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9999899864196777,
+        "message": "Model output: Normal (100.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9999899864196777,
+          "Pneumonia": 6.6750535552273504e-06
+        },
+        "xray_score": 0.8525546193122864,
+        "out_of_scope_score": 0.14486024156212807
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/MCUCXR_0052_0.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.07384304702281952,
+          "normal": 0.7691349983215332,
+          "pneumonia": 0.07071954011917114,
+          "tuberculosis": 0.025777241215109825
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.1262955830025021,
+        "classifier": 0.20333458398818038,
+        "scope_check": 0.18796291601029225,
+        "prompt": 4.375004209578037e-06,
+        "medgemma": 2.1035848750034347,
+        "total": 2.6211976670019794
+      },
+      "final_output": "Normal",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9999972581863403,
+        "message": "Model output: Normal (100.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9999972581863403,
+          "Pneumonia": 1.9464473552943673e-06
+        },
+        "xray_score": 0.768774151802063,
+        "out_of_scope_score": 0.09962028823792934
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0425-0001.jpeg",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.043805744498968124,
+          "normal": 0.6944328546524048,
+          "pneumonia": 0.3237486779689789,
+          "tuberculosis": 0.0712495669722557
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.01967325000441633,
+        "classifier": 0.1610944580170326,
+        "scope_check": 0.1676635830081068,
+        "prompt": 5.375011824071407e-06,
+        "medgemma": 1.92062179200002,
+        "total": 2.269072374998359
+      },
+      "final_output": "Normal",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Normal",
+        "confidence": 0.9001134037971497,
+        "message": "Model output: Normal (90.0% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.9001134037971497,
+          "Pneumonia": 0.08501564711332321
+        },
+        "xray_score": 0.8360902070999146,
+        "out_of_scope_score": 0.11505531147122383
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0664-0001.jpeg",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.24478444457054138,
+          "normal": 0.5294824838638306,
+          "pneumonia": 0.21879839897155762,
+          "tuberculosis": 0.017905844375491142
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.0185834169969894,
+        "classifier": 0.16418820898979902,
+        "scope_check": 0.1783040830050595,
+        "prompt": 5.290989065542817e-06,
+        "medgemma": 1.9932560410234146,
+        "total": 2.3543533329793718
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.8603024482727051,
+        "out_of_scope_score": 0.2626902889460325
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Normal/Normal-100.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.9617521166801453,
+          "normal": 0.49238595366477966,
+          "pneumonia": 0.0003018509887624532,
+          "tuberculosis": 0.0009391489438712597
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.0035505830019246787,
+        "classifier": 0.1531881249975413,
+        "scope_check": 0.16445558299892582,
+        "prompt": 4.959001671522856e-06,
+        "medgemma": 1.9637088330055121,
+        "total": 2.2849198330077343
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.6628163456916809,
+        "out_of_scope_score": 0.9626912656240165
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-1389.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.008614521473646164,
+          "normal": 0.030886109918355942,
+          "pneumonia": 0.029480500146746635,
+          "tuberculosis": 0.9999953508377075
+        },
+        "medgemma_raw": "Pneumonia",
+        "medgemma_label": "Pneumonia"
+      },
+      "time_s": {
+        "clean": 0.004716416005976498,
+        "classifier": 0.1522872079804074,
+        "scope_check": 0.16303804202470928,
+        "prompt": 5.250010872259736e-06,
+        "medgemma": 2.1652520829811692,
+        "total": 2.4853109160030726
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7850456237792969,
+        "out_of_scope_score": 1.0086098723113537
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-177.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.05823371186852455,
+          "normal": 0.060678545385599136,
+          "pneumonia": 0.005960526410490274,
+          "tuberculosis": 0.9998766183853149
+        },
+        "medgemma_raw": "Pneumonia",
+        "medgemma_label": "Pneumonia"
+      },
+      "time_s": {
+        "clean": 0.00475916700088419,
+        "classifier": 0.15419575001578778,
+        "scope_check": 0.1615092080028262,
+        "prompt": 5.749985575675964e-06,
+        "medgemma": 2.088156457990408,
+        "total": 2.408640749985352
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7536831498146057,
+        "out_of_scope_score": 1.0581103302538395
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-2301.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.001342118950560689,
+          "normal": 0.6769506931304932,
+          "pneumonia": 0.0038350021932274103,
+          "tuberculosis": 0.9999624490737915
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.004678124998463318,
+        "classifier": 0.15576012499514036,
+        "scope_check": 0.16249070799676701,
+        "prompt": 4.708999767899513e-06,
+        "medgemma": 2.0486439160013106,
+        "total": 2.371589333983138
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.7963261604309082,
+        "out_of_scope_score": 1.0013045680243522
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Pneumonia/person70_virus_130.jpeg",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.014925869181752205,
+          "normal": 0.1881323754787445,
+          "pneumonia": 0.997757613658905,
+          "tuberculosis": 0.004394995979964733
+        },
+        "medgemma_raw": "Normal",
+        "medgemma_label": "Normal"
+      },
+      "time_s": {
+        "clean": 0.005362875002902001,
+        "classifier": 0.15661862498382106,
+        "scope_check": 0.15839408300234936,
+        "prompt": 5.375011824071407e-06,
+        "medgemma": 1.9568422919837758,
+        "total": 2.2772344579861965
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed",
+        "label": "Pneumonia",
+        "confidence": 0.9773449897766113,
+        "message": "Model output: Pneumonia (97.7% confidence). Research prototype: this is not a medical diagnosis.",
+        "probabilities": {
+          "Normal": 0.022497761994600296,
+          "Pneumonia": 0.9773449897766113
+        },
+        "xray_score": 0.8896851539611816,
+        "out_of_scope_score": 0.019320865161716938
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    },
+    {
+      "image_path": "data/processed/Training/Covid-19/sub-S307988_ses-E33931_run-1_bp-chest_vp-ap_dx-corrected.png",
+      "input": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+      "output": {
+        "scores": {
+          "covid19": 0.9999387264251709,
+          "normal": 0.011775611899793148,
+          "pneumonia": 0.09249161183834076,
+          "tuberculosis": 0.004341864492744207
+        },
+        "medgemma_raw": "Pneumonia",
+        "medgemma_label": "Pneumonia"
+      },
+      "time_s": {
+        "clean": 0.010017374996095896,
+        "classifier": 0.1527198749827221,
+        "scope_check": 0.1707092919969,
+        "prompt": 5.0000089686363935e-06,
+        "medgemma": 2.0204274590068962,
+        "total": 2.3539068330137525
+      },
+      "final_output": "Needs review",
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels",
+        "message": "This X-ray could not be classified reliably as Normal or Pneumonia. It needs review by a qualified professional.",
+        "xray_score": 0.653247058391571,
+        "out_of_scope_score": 1.004280590917915
+      },
+      "system_input": "You are an expert radiologist.",
+      "prompt_settings": {
+        "system": "You are an expert radiologist.",
+        "user": "Look at this chest X-ray. Which one of these is it: Covid-19, Normal, Pneumonia, or Tuberculosis? Answer with only one word.",
+        "max_tokens": 20
+      },
+      "examples": []
+    }
+  ]
+}

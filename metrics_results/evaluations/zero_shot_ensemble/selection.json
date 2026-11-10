@@ -1,0 +1,368 @@
+{
+  "selected": "similarity_hint",
+  "rule": "validation accuracy; development accuracy; definition order",
+  "development": {
+    "label_hint": {
+      "n": 20,
+      "correct": 12,
+      "accuracy": 0.6,
+      "macro_precision": 0.65625,
+      "macro_recall": 0.6,
+      "macro_f1": 0.5604395604395604,
+      "invalid_answers": 0,
+      "matrix_labels": [
+        "Normal",
+        "Pneumonia",
+        "Other"
+      ],
+      "confusion_matrix": [
+        [
+          9,
+          1,
+          0
+        ],
+        [
+          7,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "Normal": {
+          "precision": 0.5625,
+          "recall": 0.9,
+          "f1": 0.6923076923076923,
+          "support": 10
+        },
+        "Pneumonia": {
+          "precision": 0.75,
+          "recall": 0.3,
+          "f1": 0.42857142857142855,
+          "support": 10
+        }
+      },
+      "medsiglip_only": {
+        "n": 20,
+        "correct": 19,
+        "accuracy": 0.95,
+        "macro_precision": 0.9545454545454546,
+        "macro_recall": 0.95,
+        "macro_f1": 0.949874686716792,
+        "invalid_answers": 0,
+        "matrix_labels": [
+          "Normal",
+          "Pneumonia",
+          "Other"
+        ],
+        "confusion_matrix": [
+          [
+            9,
+            1,
+            0
+          ],
+          [
+            0,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "support": 10
+          },
+          "Pneumonia": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1": 0.9523809523809523,
+            "support": 10
+          }
+        }
+      }
+    },
+    "similarity_hint": {
+      "n": 20,
+      "correct": 16,
+      "accuracy": 0.8,
+      "macro_precision": 0.8125,
+      "macro_recall": 0.8,
+      "macro_f1": 0.797979797979798,
+      "invalid_answers": 0,
+      "matrix_labels": [
+        "Normal",
+        "Pneumonia",
+        "Other"
+      ],
+      "confusion_matrix": [
+        [
+          9,
+          1,
+          0
+        ],
+        [
+          3,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "Normal": {
+          "precision": 0.75,
+          "recall": 0.9,
+          "f1": 0.8181818181818182,
+          "support": 10
+        },
+        "Pneumonia": {
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.7777777777777778,
+          "support": 10
+        }
+      },
+      "medsiglip_only": {
+        "n": 20,
+        "correct": 19,
+        "accuracy": 0.95,
+        "macro_precision": 0.9545454545454546,
+        "macro_recall": 0.95,
+        "macro_f1": 0.949874686716792,
+        "invalid_answers": 0,
+        "matrix_labels": [
+          "Normal",
+          "Pneumonia",
+          "Other"
+        ],
+        "confusion_matrix": [
+          [
+            9,
+            1,
+            0
+          ],
+          [
+            0,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "support": 10
+          },
+          "Pneumonia": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1": 0.9523809523809523,
+            "support": 10
+          }
+        }
+      }
+    }
+  },
+  "validation": {
+    "label_hint": {
+      "n": 40,
+      "correct": 28,
+      "accuracy": 0.7,
+      "macro_precision": 0.8125,
+      "macro_recall": 0.7,
+      "macro_f1": 0.6703296703296704,
+      "invalid_answers": 0,
+      "matrix_labels": [
+        "Normal",
+        "Pneumonia",
+        "Other"
+      ],
+      "confusion_matrix": [
+        [
+          20,
+          0,
+          0
+        ],
+        [
+          12,
+          8,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "Normal": {
+          "precision": 0.625,
+          "recall": 1.0,
+          "f1": 0.7692307692307693,
+          "support": 20
+        },
+        "Pneumonia": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714285714285714,
+          "support": 20
+        }
+      },
+      "medsiglip_only": {
+        "n": 40,
+        "correct": 38,
+        "accuracy": 0.95,
+        "macro_precision": 0.9545454545454546,
+        "macro_recall": 0.95,
+        "macro_f1": 0.949874686716792,
+        "invalid_answers": 0,
+        "matrix_labels": [
+          "Normal",
+          "Pneumonia",
+          "Other"
+        ],
+        "confusion_matrix": [
+          [
+            18,
+            2,
+            0
+          ],
+          [
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "support": 20
+          },
+          "Pneumonia": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1": 0.9523809523809523,
+            "support": 20
+          }
+        }
+      }
+    },
+    "similarity_hint": {
+      "n": 40,
+      "correct": 34,
+      "accuracy": 0.85,
+      "macro_precision": 0.8645833333333333,
+      "macro_recall": 0.85,
+      "macro_f1": 0.8484848484848485,
+      "invalid_answers": 0,
+      "matrix_labels": [
+        "Normal",
+        "Pneumonia",
+        "Other"
+      ],
+      "confusion_matrix": [
+        [
+          19,
+          1,
+          0
+        ],
+        [
+          5,
+          15,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "Normal": {
+          "precision": 0.7916666666666666,
+          "recall": 0.95,
+          "f1": 0.8636363636363636,
+          "support": 20
+        },
+        "Pneumonia": {
+          "precision": 0.9375,
+          "recall": 0.75,
+          "f1": 0.8333333333333334,
+          "support": 20
+        }
+      },
+      "medsiglip_only": {
+        "n": 40,
+        "correct": 38,
+        "accuracy": 0.95,
+        "macro_precision": 0.9545454545454546,
+        "macro_recall": 0.95,
+        "macro_f1": 0.949874686716792,
+        "invalid_answers": 0,
+        "matrix_labels": [
+          "Normal",
+          "Pneumonia",
+          "Other"
+        ],
+        "confusion_matrix": [
+          [
+            18,
+            2,
+            0
+          ],
+          [
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "Normal": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9473684210526315,
+            "support": 20
+          },
+          "Pneumonia": {
+            "precision": 0.9090909090909091,
+            "recall": 1.0,
+            "f1": 0.9523809523809523,
+            "support": 20
+          }
+        }
+      }
+    }
+  }
+}

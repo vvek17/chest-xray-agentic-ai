@@ -1,0 +1,38 @@
+[transformers] Model config: bos_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 49406. This may result in unexpected behavior.
+[transformers] Model config: eos_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 49407. This may result in unexpected behavior.
+Loading weights:   0%|          | 0/888 [00:00<?, ?it/s]Loading weights:   0%|          | 4/888 [00:00<00:33, 26.59it/s]Loading weights:  10%|█         | 90/888 [00:00<00:01, 428.23it/s]Loading weights:  16%|█▌        | 141/888 [00:00<00:01, 393.67it/s]Loading weights:  21%|██        | 185/888 [00:00<00:01, 408.20it/s]Loading weights:  26%|██▌       | 229/888 [00:00<00:01, 382.60it/s]Loading weights:  30%|███       | 270/888 [00:00<00:01, 351.29it/s]Loading weights:  35%|███▍      | 307/888 [00:01<00:02, 249.60it/s]Loading weights:  38%|███▊      | 337/888 [00:01<00:02, 248.01it/s]Loading weights:  41%|████      | 365/888 [00:01<00:02, 217.03it/s]Loading weights:  44%|████▍     | 390/888 [00:01<00:02, 209.35it/s]Loading weights:  47%|████▋     | 413/888 [00:01<00:02, 208.03it/s]Loading weights:  51%|█████     | 449/888 [00:01<00:02, 203.71it/s]Loading weights:  54%|█████▍    | 481/888 [00:01<00:02, 199.52it/s]Loading weights:  58%|█████▊    | 513/888 [00:02<00:01, 200.44it/s]Loading weights:  60%|██████    | 534/888 [00:02<00:01, 185.39it/s]Loading weights:  63%|██████▎   | 561/888 [00:02<00:01, 202.69it/s]Loading weights:  67%|██████▋   | 593/888 [00:02<00:01, 201.97it/s]Loading weights:  69%|██████▉   | 614/888 [00:02<00:01, 161.23it/s]Loading weights:  71%|███████   | 632/888 [00:02<00:01, 164.45it/s]Loading weights:  73%|███████▎  | 650/888 [00:02<00:01, 155.48it/s]Loading weights:  76%|███████▌  | 673/888 [00:03<00:01, 148.07it/s]Loading weights:  79%|███████▉  | 705/888 [00:03<00:01, 160.12it/s]Loading weights:  83%|████████▎ | 737/888 [00:03<00:00, 183.96it/s]Loading weights:  87%|████████▋ | 769/888 [00:03<00:00, 197.63it/s]Loading weights:  90%|█████████ | 801/888 [00:03<00:00, 212.27it/s]Loading weights:  94%|█████████▍| 833/888 [00:03<00:00, 224.09it/s]Loading weights:  97%|█████████▋| 865/888 [00:03<00:00, 224.78it/s]Loading weights: 100%|██████████| 888/888 [00:04<00:00, 220.48it/s]
+Loading google/medgemma-1.5-4b-it ...
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  75%|███████▌  | 664/883 [00:00<00:00, 6521.45it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 6771.48it/s]
+SCORING TARGETS {"classes": ["Covid-19", "Normal", "Pneumonia", "Tuberculosis"], "sequences": [[70465, 236772, 236770, 236819], [15585], [236791, 24014, 13577], [236774, 112335]], "first_token_ids": [70465, 15585, 236791, 236774], "mode": "first_token", "decoded_first_tokens": ["Covid", "Normal", "P", "T"]}
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+{"stage": "extracting_frozen_features", "split": "train", "newly_cached_this_run": 4, "missing_at_start": 13229, "elapsed_seconds": 19.9, "estimated_remaining_seconds": 65650.5, "test_images_processed": 0, "current_batch_errors": 0}
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+{"stage": "extracting_frozen_features", "split": "train", "newly_cached_this_run": 40, "missing_at_start": 13229, "elapsed_seconds": 162.7, "estimated_remaining_seconds": 53646.1, "test_images_processed": 0, "current_batch_errors": 0}
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "training/train_dual_backbone.py", line 450, in <module>
+    main()
+  File "training/train_dual_backbone.py", line 425, in main
+    metadata = extract_features(parts, classes)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "training/train_dual_backbone.py", line 104, in extract_features
+    features, raw = extractor.extract([r["path"] for r in batch])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "../.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "backend/dual_backbone.py", line 110, in extract
+    logits = output.logits[:, -1, :].float().cpu()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

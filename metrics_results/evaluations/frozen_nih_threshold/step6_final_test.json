@@ -1,0 +1,196 @@
+{
+  "stage": 6,
+  "split": "final_test",
+  "n": 200,
+  "methods": {
+    "MedSigLIP": {
+      "n": 200,
+      "counts": {
+        "TP": 92,
+        "FN": 8,
+        "TN": 22,
+        "FP": 78
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          22,
+          78
+        ],
+        [
+          8,
+          92
+        ]
+      ],
+      "sensitivity": 0.92,
+      "sensitivity_ci95": [
+        0.8500189229905127,
+        0.9589065385156194
+      ],
+      "specificity": 0.22,
+      "specificity_ci95": [
+        0.150012823846054,
+        0.31070353514985793
+      ],
+      "accuracy": 0.57,
+      "Other": 0,
+      "threshold": -0.1631323341280222,
+      "auc": 0.7554,
+      "auc_ci95": [
+        0.6818924999999999,
+        0.8206199999999999
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 8,
+        "method_wrong_baseline_correct": 38,
+        "exact_two_sided_p": 9.24769992138863e-06
+      }
+    },
+    "MedGemma": {
+      "n": 200,
+      "counts": {
+        "TP": 94,
+        "FN": 6,
+        "TN": 22,
+        "FP": 78
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          22,
+          78
+        ],
+        [
+          6,
+          94
+        ]
+      ],
+      "sensitivity": 0.94,
+      "sensitivity_ci95": [
+        0.8752318455410406,
+        0.9722138760368118
+      ],
+      "specificity": 0.22,
+      "specificity_ci95": [
+        0.150012823846054,
+        0.31070353514985793
+      ],
+      "accuracy": 0.58,
+      "Other": 0,
+      "threshold": -5.25,
+      "auc": 0.7793500000000001,
+      "auc_ci95": [
+        0.7089487500000001,
+        0.84105375
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 10,
+        "method_wrong_baseline_correct": 38,
+        "exact_two_sided_p": 6.169640777642371e-05
+      }
+    },
+    "Fusion": {
+      "n": 200,
+      "counts": {
+        "TP": 93,
+        "FN": 7,
+        "TN": 22,
+        "FP": 78
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          22,
+          78
+        ],
+        [
+          7,
+          93
+        ]
+      ],
+      "sensitivity": 0.93,
+      "sensitivity_ci95": [
+        0.8625048526092651,
+        0.9656807389327273
+      ],
+      "specificity": 0.22,
+      "specificity_ci95": [
+        0.150012823846054,
+        0.31070353514985793
+      ],
+      "accuracy": 0.575,
+      "Other": 0,
+      "threshold": -0.629323617337661,
+      "auc": 0.7718,
+      "auc_ci95": [
+        0.7026775,
+        0.8354
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 9,
+        "method_wrong_baseline_correct": 38,
+        "exact_two_sided_p": 2.4904030624384177e-05
+      }
+    }
+  },
+  "validation_selected_winner": "MedSigLIP",
+  "greedy_baseline": {
+    "n": 200,
+    "counts": {
+      "TP": 84,
+      "FN": 16,
+      "TN": 60,
+      "FP": 40
+    },
+    "matrix_order": [
+      "Normal",
+      "Pneumonia"
+    ],
+    "confusion_matrix": [
+      [
+        60,
+        40
+      ],
+      [
+        16,
+        84
+      ]
+    ],
+    "sensitivity": 0.84,
+    "sensitivity_ci95": [
+      0.7557973061072976,
+      0.8990471151119521
+    ],
+    "specificity": 0.6,
+    "specificity_ci95": [
+      0.5020025867910618,
+      0.6905987135675411
+    ],
+    "accuracy": 0.72,
+    "Other": 0
+  },
+  "seed": 42,
+  "bootstrap_resamples": 2000,
+  "nonfinite_scores": 0,
+  "parse_failures": 0,
+  "score_sign_greedy_agreement": {
+    "agree": 200,
+    "n": 200,
+    "ties": 0
+  },
+  "thresholds_sha256": "6928037c69f86852fcc1358796afe69aba48b575c26b561a2197b727c06d7598",
+  "scores_sha256": "73018093fe669442ec158e256acb54d661bf50e9f62e4e44d19342fbd41f3e5f",
+  "predictions_sha256": "36e92c224a35003324f28b4e4047d00292dea786d8e5993a2ea23d191882f384",
+  "retuning": false,
+  "winner_reselected": false,
+  "limitations": "This set was used in earlier project experiments; Step 6 uses frozen decisions without retuning."
+}

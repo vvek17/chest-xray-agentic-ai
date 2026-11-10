@@ -1,0 +1,21 @@
+path,true,answer,predicted
+data/processed/Training/Covid-19/bc34f68f-0c2b-4e9e-be5e-377f531a1207.png,Covid-19,"The chest X-ray shows a central venous catheter in the right upper chest. There is a hazy opacity in the left lower lung field.
+Answer: Covid-19",Covid-19
+data/processed/Training/Normal/NORMAL2-IM-1376-0001.jpeg,Normal,"The chest X-ray shows clear lungs with no visible consolidation, opacities, or infiltrates.
+Answer: Normal",Normal
+data/processed/Training/Pneumonia/person978_bacteria_2904.jpeg,Pneumonia,"The chest X-ray shows diffuse bilateral opacities, predominantly in the lower lung zones.
+Answer: Covid-19",Covid-19
+data/processed/Training/Tuberculosis/Tuberculosis-1769.png,Tuberculosis,"The chest X-ray shows extensive opacities and consolidation in the right lung, with some patchy opacities in the left lung.
+Answer: Covid-19",Covid-19
+data/processed/Validation/Covid-19/sub-S325070_ses-E50418_run-1_bp-chest_vp-pa_dx-corrected.png,Covid-19,"The chest X-ray shows clear lungs with no opacities.
+Answer: Normal",Normal
+data/processed/Training/Normal/NORMAL2-IM-0587-0001.jpeg,Normal,"The chest X-ray shows relatively clear lung fields with no obvious consolidation, ground-glass opacities, or significant infiltrates.
+Answer: Normal",Normal
+data/processed/Training/Pneumonia/person351_bacteria_1619.jpeg,Pneumonia,"The chest X-ray shows bilateral patchy opacities, predominantly in the lower lung fields.
+Answer: Covid-19",Covid-19
+data/processed/Training/Tuberculosis/Tuberculosis-1749.png,Tuberculosis,"The chest X-ray shows significant opacification and consolidation in the right upper lobe, along with some haziness in the right lower lung field.
+Answer: Pneumonia",Pneumonia
+data/processed/Training/Covid-19/ba54e255-4d76-4f33-ab14-cbe9ac42c5a5.png,Covid-19,"The chest X-ray shows significant opacification in the right upper lobe and bilateral pleural effusions.
+Answer: Covid-19",Covid-19
+data/processed/Training/Normal/NORMAL2-IM-0975-0001.jpeg,Normal,"The chest X-ray shows a normal heart size and clear lung fields.
+Answer: Normal",Normal

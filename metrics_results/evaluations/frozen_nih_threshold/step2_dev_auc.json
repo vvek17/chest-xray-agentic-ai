@@ -1,0 +1,74 @@
+{
+  "stage": "Step 2 checkpoint",
+  "split": "dev",
+  "n": 200,
+  "class_counts": {
+    "Normal": 100,
+    "Pneumonia": 100
+  },
+  "positive_class": "Pneumonia",
+  "seed": 42,
+  "bootstrap_resamples": 2000,
+  "bootstrap": "Class-stratified percentile 95% CI; identical resampled cases for all methods; dev scaling held fixed",
+  "scaling": {
+    "means": [
+      -0.04725294791860506,
+      -0.8981250002980232
+    ],
+    "stds": [
+      0.2005010528679048,
+      6.435112755109048
+    ],
+    "ddof": 0,
+    "fitted_on": "dev only",
+    "order": [
+      "siglip_score",
+      "medgemma_score"
+    ]
+  },
+  "methods": {
+    "MedSigLIP": {
+      "auc": 0.769,
+      "ci95": [
+        0.702095,
+        0.8311025000000001
+      ],
+      "ci_includes_0_5": false
+    },
+    "MedGemma": {
+      "auc": 0.7595000000000001,
+      "ci95": [
+        0.69063625,
+        0.8251625
+      ],
+      "ci_includes_0_5": false
+    },
+    "Fusion": {
+      "auc": 0.7653,
+      "ci95": [
+        0.6968949999999999,
+        0.8293024999999999
+      ],
+      "ci_includes_0_5": false
+    }
+  },
+  "fusion_comparison": {
+    "better_single": "MedSigLIP",
+    "auc_difference": -0.0037000000000000366,
+    "paired_bootstrap_ci95": [
+      -0.01650250000000007,
+      0.009702499999999914
+    ],
+    "ci_entirely_above_zero": false
+  },
+  "parse_failures": 0,
+  "score_sign_greedy_agreement": {
+    "agree": 200,
+    "denominator": 200
+  },
+  "dev_scores_sha256": "7dc3f8feb931d41b0843f708705fd469460ac357d39113b6aea56fcd161c1756",
+  "source_sha256": "0d212fe29039d8702e745e9e949c9f46753a35c542b11a6e1545aa8389ea6095",
+  "thresholds_selected": false,
+  "validation_performance_evaluated": false,
+  "final_test_inference": false
+}

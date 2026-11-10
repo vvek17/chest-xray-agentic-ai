@@ -1,0 +1,21 @@
+path,true,answer,predicted
+data/processed/Training/Covid-19/bc34f68f-0c2b-4e9e-be5e-377f531a1207.png,Covid-19,"The main finding is a hazy opacity in the left lower lobe.
+Answer: Covid-19",Covid-19
+data/processed/Training/Normal/NORMAL2-IM-1376-0001.jpeg,Normal,"The main finding is a diffuse, hazy opacity throughout the lungs.
+Answer: Covid-19",Covid-19
+data/processed/Training/Pneumonia/person978_bacteria_2904.jpeg,Pneumonia,"The main finding is a diffuse, hazy opacity throughout both lung fields.
+Answer: Covid-19",Covid-19
+data/processed/Training/Tuberculosis/Tuberculosis-1769.png,Tuberculosis,"The main finding is a dense, white consolidation in the right lower lobe.
+Answer: Pneumonia",Pneumonia
+data/processed/Validation/Covid-19/sub-S325070_ses-E50418_run-1_bp-chest_vp-pa_dx-corrected.png,Covid-19,"The lungs appear clear with no opacities.
+Answer: Normal",Normal
+data/processed/Training/Normal/NORMAL2-IM-0587-0001.jpeg,Normal,"The main finding is a hazy opacity in the right lower lobe.
+Answer: Covid-19",Covid-19
+data/processed/Training/Pneumonia/person351_bacteria_1619.jpeg,Pneumonia,"The main finding is bilateral patchy opacities, predominantly in the lower lung zones.
+Answer: Covid-19",Covid-19
+data/processed/Training/Tuberculosis/Tuberculosis-1749.png,Tuberculosis,"The right upper lobe shows patchy opacities and consolidation.
+Answer: Covid-19",Covid-19
+data/processed/Training/Covid-19/ba54e255-4d76-4f33-ab14-cbe9ac42c5a5.png,Covid-19,"The right lung shows a dense, white consolidation.
+Answer: Pneumonia",Pneumonia
+data/processed/Training/Normal/NORMAL2-IM-0975-0001.jpeg,Normal,"The main finding is a hazy opacity in the lower lung fields.
+Answer: Covid-19",Covid-19

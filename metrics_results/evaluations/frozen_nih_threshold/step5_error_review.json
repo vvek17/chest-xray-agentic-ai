@@ -1,0 +1,13 @@
+{
+  "stage": 5,
+  "split": "validation",
+  "winner": "MedSigLIP",
+  "false_alarms": 39,
+  "missed_pneumonia": 25,
+  "thresholds_sha256": "6928037c69f86852fcc1358796afe69aba48b575c26b561a2197b727c06d7598",
+  "validation_predictions_sha256": "04f0c574ae8299c85b55115faacbe8a619f7e81354e0752d3a9ee17a6e8ea28c",
+  "model_inference": false,
+  "thresholds_changed": false,
+  "prompts_changed": false,
+  "final_test_inference": false
+}

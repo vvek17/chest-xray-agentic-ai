@@ -1,0 +1,171 @@
+image_id,path,true_label,medsiglip_prediction,normal_similarity,pneumonia_similarity,baseline_nohint_prediction,baseline_nohint_correct,baseline_nohint_raw_answer,criteria_nohint_prediction,criteria_nohint_correct,criteria_nohint_raw_answer,criteria_hint_prediction,criteria_hint_correct,criteria_hint_raw_answer,criteria_nohint_softened_prediction,criteria_nohint_softened_correct,criteria_nohint_softened_raw_answer,criteria_hint_softened_prediction,criteria_hint_softened_correct,criteria_hint_softened_raw_answer
+Normal-2348,data/processed/Validation/Normal/Normal-2348.png,Normal,Normal,0.15895822644233704,-0.060783740133047104,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1345_bacteria_3426,data/processed/Validation/Pneumonia/person1345_bacteria_3426.jpeg,Pneumonia,Pneumonia,-0.1071288213133812,0.03359341621398926,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: There is a left-sided chest tube in place with some residual left pleural effusion.",Normal,False,"Findings: A left-sided chest tube is present. There is a small right pleural effusion. The left lung is clear. The right lung shows some atelectasis.
+
+Final answer: Normal",Normal,False,"Findings: A left-sided chest tube is present. There is a small left pleural effusion and atelectasis in the left lower lobe. The right lung is clear.
+
+Final answer: Normal",Normal,False,"Findings: A left-sided chest tube is present. There is a small left pleural effusion and atelectasis in the left lower lobe. The right lung is clear.
+
+Final answer: Normal"
+Normal-3285,data/processed/Validation/Normal/Normal-3285.png,Normal,Normal,0.07175637036561966,-0.11127634346485138,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: Clear lung fields with normal heart size and mediastinal contours.",Normal,True,"Findings: The lungs appear clear with no focal consolidation or significant opacities.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1667_bacteria_4418,data/processed/Validation/Pneumonia/person1667_bacteria_4418.jpeg,Pneumonia,Pneumonia,-0.005175609141588211,0.029253657907247543,Normal,False,Normal,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+Normal-2804,data/processed/Validation/Normal/Normal-2804.png,Normal,Normal,0.15238279104232788,-0.16729502379894257,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1391_bacteria_3536,data/processed/Validation/Pneumonia/person1391_bacteria_3536.jpeg,Pneumonia,Pneumonia,-0.024945130571722984,0.13660100102424622,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+Normal-3316,data/processed/Validation/Normal/Normal-3316.png,Normal,Normal,0.21917468309402466,-0.05360741913318634,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,Final answer: Normal,Normal,True,Final answer: Normal
+person1657_bacteria_4398,data/processed/Validation/Pneumonia/person1657_bacteria_4398.jpeg,Pneumonia,Pneumonia,-0.005219214130192995,0.12118013203144073,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: There is no focal opacity in the lung fields.",Pneumonia,True,"Findings: There is patchy opacity in the right lower lung field.
+Final answer: Pneumonia",Pneumonia,True,"Findings: Patchy opacities in the right lower lung field.
+Final answer: Pneumonia",Pneumonia,True,"Findings: There is patchy opacity in the right lower lung field.
+Final answer: Pneumonia"
+Normal-3320,data/processed/Validation/Normal/Normal-3320.png,Normal,Normal,0.06474894285202026,-0.058778613805770874,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: Clear lung fields with normal heart size and mediastinal contours.",Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1420_virus_2431,data/processed/Validation/Pneumonia/person1420_virus_2431.jpeg,Pneumonia,Pneumonia,0.062321171164512634,0.07680408656597137,Normal,False,Normal,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,"Findings: The lungs are clear, heart size is normal, and there is no evidence of consolidation or effusion.
+Final answer: Normal"
+Normal-3313,data/processed/Validation/Normal/Normal-3313.png,Normal,Normal,0.10630988329648972,-0.09228881448507309,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, heart size is normal, and there is no evidence of consolidation or effusion.
+Final answer: Normal"
+person1369_virus_2356,data/processed/Validation/Pneumonia/person1369_virus_2356.jpeg,Pneumonia,Pneumonia,0.017548328265547752,0.21948738396167755,Normal,False,Normal,Normal,False,"Final answer: Normal
+Key finding: The lung fields appear clear with no focal consolidation or opacity.",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,Final answer: Normal
+Normal-3444,data/processed/Validation/Normal/Normal-3444.png,Normal,Pneumonia,-0.08604440093040466,-0.07722338289022446,Pneumonia,False,Pneumonia,Normal,True,"Final answer: Normal
+Key finding: The left lung shows a significant opacity in the upper lobe.",Pneumonia,False,"Findings: There is a left upper lobe opacity.
+Final answer: Pneumonia",Normal,True,Final answer: Normal,Pneumonia,False,"Findings: There is a left-sided picc line. The left lung shows a mass-like opacity in the upper lobe. The right lung appears clear. The heart size and mediastinal contours are within normal limits. There is no pleural effusion.
+
+Final answer: Pneumonia"
+person1428_virus_2442,data/processed/Validation/Pneumonia/person1428_virus_2442.jpeg,Pneumonia,Pneumonia,0.049970485270023346,0.22069650888442993,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: Diffuse bilateral interstitial opacities.",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal"
+Normal-3216,data/processed/Validation/Normal/Normal-3216.png,Normal,Normal,0.10670929402112961,0.02742939069867134,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Pneumonia,False,"Findings: There is a rounded opacity in the left lower lobe.
+Final answer: Pneumonia",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits.
+
+Final answer: Normal"
+person1634_bacteria_4334,data/processed/Validation/Pneumonia/person1634_bacteria_4334.jpeg,Pneumonia,Pneumonia,-0.04185415431857109,0.13305307924747467,Pneumonia,True,Pneumonia,Normal,False,"Final answer: The heart appears enlarged.
+Final answer: Normal",Normal,False,"Findings: Cardiomegaly.
+Final answer: Normal",Normal,False,"Findings: Cardiomegaly and mild pulmonary edema.
+Final answer: Normal",Normal,False,"Findings: The heart appears enlarged, and there is some increased opacity in the lung fields, possibly representing mild pulmonary edema or atelectasis.
+
+Final answer: Normal"
+Normal-3314,data/processed/Validation/Normal/Normal-3314.png,Normal,Normal,-0.022852491587400436,-0.055241603404283524,Pneumonia,False,Pneumonia,Normal,True,"Final answer: The heart appears enlarged.
+Final answer: Normal",Normal,True,"Findings: Cardiomegaly.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The heart appears enlarged, and the lung fields are clear.
+Final answer: Normal"
+person1292_virus_2218,data/processed/Validation/Pneumonia/person1292_virus_2218.jpeg,Pneumonia,Pneumonia,0.04697519913315773,0.1590064913034439,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: The lung fields appear clear with no focal consolidation or significant opacity.",Normal,False,"Findings: The lungs appear clear with no focal consolidation or significant opacities.
+Final answer: Normal",Normal,False,"Findings: Mild bilateral interstitial markings.
+Final answer: Normal",Normal,False,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial thickening. The heart size and mediastinal contours are within normal limits.
+
+Final answer: Normal"
+Normal-2185,data/processed/Validation/Normal/Normal-2185.png,Normal,Pneumonia,-0.11163996160030365,-0.035723816603422165,Pneumonia,False,Pneumonia,Normal,True,"Final answer: The heart appears enlarged.
+Final answer: Normal",Normal,True,"Findings: Cardiomegaly and mild pulmonary edema.
+Final answer: Normal",Normal,True,"Key finding: Mild pulmonary edema.
+Final answer: Normal",Normal,True,"Findings: Mild pulmonary edema.
+Final answer: Normal"
+person1358_virus_2339,data/processed/Validation/Pneumonia/person1358_virus_2339.jpeg,Pneumonia,Pneumonia,0.0028169401921331882,0.18921060860157013,Pneumonia,True,Pneumonia,Pneumonia,True,"Findings: Right upper lobe opacity.
+Final answer: Pneumonia",Pneumonia,True,"Findings: There is a focal opacity in the right upper lobe.
+Final answer: Pneumonia",Pneumonia,True,"Findings: Right upper lobe consolidation.
+Final answer: Pneumonia",Pneumonia,True,"Findings: There is a patchy opacity in the right upper lobe.
+Final answer: Pneumonia"
+Normal-3140,data/processed/Validation/Normal/Normal-3140.png,Normal,Normal,0.14808599650859833,-0.13835248351097107,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1619_bacteria_4261,data/processed/Validation/Pneumonia/person1619_bacteria_4261.jpeg,Pneumonia,Pneumonia,-0.19012807309627533,0.08729385584592819,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Final answer: Normal",Pneumonia,True,"Final answer: Pneumonia
+Key finding: Diffuse bilateral patchy opacities are present throughout both lung fields.",Pneumonia,True,"Findings: Diffuse bilateral patchy opacities and consolidation.
+Final answer: Pneumonia",Pneumonia,True,"Findings: Diffuse bilateral patchy opacities are present throughout both lung fields.
+Final answer: Pneumonia"
+Normal-3380,data/processed/Validation/Normal/Normal-3380.png,Normal,Normal,0.10673748701810837,-0.07664092630147934,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1685_virus_2903,data/processed/Validation/Pneumonia/person1685_virus_2903.jpeg,Pneumonia,Pneumonia,0.049468591809272766,0.08720557391643524,Normal,False,Normal,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,Final answer: Normal
+Normal-2561,data/processed/Validation/Normal/Normal-2561.png,Normal,Normal,0.01832246221601963,-0.002792972605675459,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: The lung fields appear clear with no focal consolidation or significant opacity.",Normal,True,"Findings: The lung fields appear clear with no focal consolidation or significant opacities.
+Final answer: Normal",Normal,True,"Findings: Subtle patchy opacity in the left lower lung field.
+Final answer: Normal",Normal,True,"Findings: The lung fields appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits.
+Final answer: Normal"
+person1855_bacteria_4727,data/processed/Validation/Pneumonia/person1855_bacteria_4727.jpeg,Pneumonia,Pneumonia,0.1139700785279274,0.14932483434677124,Normal,False,Normal,Normal,False,"Final answer: Normal
+Key finding: The lung fields are clear with no focal consolidation or opacity.",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,Final answer: Normal
+Normal-3399,data/processed/Validation/Normal/Normal-3399.png,Normal,Normal,0.20493265986442566,0.03397602215409279,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: Clear lung fields with normal heart size and mediastinal contours.",Normal,True,Final answer: Normal,Normal,True,Final answer: Normal,Normal,True,Final answer: Normal
+person1670_virus_2886,data/processed/Validation/Pneumonia/person1670_virus_2886.jpeg,Pneumonia,Pneumonia,0.017003560438752174,0.13157027959823608,Normal,False,Normal,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,"Findings: The heart size appears borderline enlarged. The lung fields are clear without focal consolidation, air bronchograms, or significant interstitial changes. The costophrenic angles are sharp.
+
+Final answer: Normal",Normal,False,Final answer: Normal,Normal,False,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal"
+Normal-3301,data/processed/Validation/Normal/Normal-3301.png,Normal,Normal,0.16593803465366364,-0.0685439333319664,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,Final answer: Normal,Normal,True,Final answer: Normal
+person1668_bacteria_4420,data/processed/Validation/Pneumonia/person1668_bacteria_4420.jpeg,Pneumonia,Pneumonia,0.04514613002538681,0.13542582094669342,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,Final answer: Normal
+Normal-3379,data/processed/Validation/Normal/Normal-3379.png,Normal,Normal,0.09540227800607681,-0.018793318420648575,Normal,True,Normal,Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,Final answer: Normal
+person1415_bacteria_3629,data/processed/Validation/Pneumonia/person1415_bacteria_3629.jpeg,Pneumonia,Pneumonia,-0.08226313441991806,0.21705716848373413,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: There is no focal opacity in the lung fields.",Pneumonia,True,"Findings: There is patchy opacity in the right lung, particularly in the mid and lower zones.
+
+Final answer: Pneumonia",Pneumonia,True,"Findings: There is patchy opacity in the right lung, particularly in the mid to lower zones, and some increased opacity in the left lung.
+
+Final answer: Pneumonia",Pneumonia,True,"Findings: There is patchy opacification in the right lung, particularly in the mid and lower zones, and also in the left lung, especially in the upper and mid zones. There is no clear consolidation or air bronchogram.
+
+Final answer: Pneumonia"
+Normal-2066,data/processed/Validation/Normal/Normal-2066.png,Normal,Normal,0.037429288029670715,-0.0014344393275678158,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: The lung fields are clear with no focal consolidation or opacity.",Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits.
+
+Final answer: Normal"
+person1308_bacteria_3288,data/processed/Validation/Pneumonia/person1308_bacteria_3288.jpeg,Pneumonia,Pneumonia,-0.17290355265140533,0.1478922963142395,Pneumonia,True,Pneumonia,Normal,False,"Findings: Cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal",Normal,False,"Findings: Cardiomegaly and pulmonary edema.
+Final answer: Normal",Normal,False,"Findings: Cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal",Normal,False,"Findings: There is cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal"
+Normal-3474,data/processed/Validation/Normal/Normal-3474.png,Normal,Normal,-0.06135666370391846,-0.07382448762655258,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: The chest X-ray shows clear lung fields with no focal consolidation or opacity suggestive of pneumonia.",Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal"
+person1348_virus_2326,data/processed/Validation/Pneumonia/person1348_virus_2326.jpeg,Pneumonia,Pneumonia,-0.055470727384090424,0.1397007703781128,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: Diffuse bilateral patchy opacities are present in the lung fields.",Pneumonia,True,"Findings: Bilateral patchy opacities in the lung fields.
+Final answer: Pneumonia",Normal,False,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Pneumonia,True,"Findings: Diffuse bilateral patchy opacities are present in the lung fields.
+Final answer: Pneumonia"
+Normal-3366,data/processed/Validation/Normal/Normal-3366.png,Normal,Normal,0.0473371259868145,-0.08475250005722046,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: Clear lung fields with normal heart size and mediastinal contours.",Normal,True,"Final answer: Normal
+Final answer: Normal",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs are clear, the heart size is normal, and the mediastinal contours are unremarkable. There is no evidence of consolidation or focal opacity.
+Final answer: Normal"
+person1298_virus_2228,data/processed/Validation/Pneumonia/person1298_virus_2228.jpeg,Pneumonia,Pneumonia,-0.06828504800796509,0.22772791981697083,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Final answer: Normal",Normal,False,Final answer: Normal,Pneumonia,True,Final answer: Pneumonia,Pneumonia,True,Final answer: Pneumonia
+Normal-3471,data/processed/Validation/Normal/Normal-3471.png,Normal,Normal,0.07754699885845184,-0.058059584349393845,Normal,True,Normal,Normal,True,"Final answer: Normal
+Key finding: The lungs appear clear with no focal consolidation or infiltrates.",Pneumonia,False,"Findings: There is a nodular opacity in the right upper lobe.
+Final answer: Pneumonia",Normal,True,Final answer: Normal,Normal,True,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits.
+
+Final answer: Normal"
+person1438_bacteria_3721,data/processed/Validation/Pneumonia/person1438_bacteria_3721.jpeg,Pneumonia,Pneumonia,-0.026062358170747757,0.08590235561132431,Pneumonia,True,Pneumonia,Normal,False,"Final answer: Normal
+Key finding: The lungs are clear with no focal consolidation or opacity.",Normal,False,Final answer: Normal,Normal,False,Final answer: Normal,Normal,False,"Findings: The lungs appear clear with no focal consolidation, air bronchograms, or significant interstitial changes. The heart size and mediastinal contours are within normal limits. Costophrenic angles are sharp.
+
+Final answer: Normal"

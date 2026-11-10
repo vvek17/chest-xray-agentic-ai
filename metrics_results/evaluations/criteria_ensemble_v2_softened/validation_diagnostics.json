@@ -1,0 +1,54 @@
+{
+  "criteria_nohint": {
+    "dataset": "internal Validation, 20 Normal + 20 Pneumonia",
+    "TP": 1,
+    "TN": 20,
+    "FP": 0,
+    "FN": 19,
+    "Other": 0,
+    "sensitivity": 0.05,
+    "specificity": 1.0,
+    "hint_used_field_present": 0,
+    "hint_used_yes": null
+  },
+  "criteria_hint": {
+    "dataset": "internal Validation, 20 Normal + 20 Pneumonia",
+    "TP": 5,
+    "TN": 17,
+    "FP": 3,
+    "FN": 15,
+    "Other": 0,
+    "sensitivity": 0.25,
+    "specificity": 0.85,
+    "hint_used_field_present": 0,
+    "hint_used_yes": null,
+    "matches_hint": 22,
+    "hint_correct": 38
+  },
+  "criteria_nohint_softened": {
+    "dataset": "internal Validation, 20 Normal + 20 Pneumonia",
+    "TP": 5,
+    "TN": 20,
+    "FP": 0,
+    "FN": 15,
+    "Other": 0,
+    "sensitivity": 0.25,
+    "specificity": 1.0,
+    "hint_used_field_present": 0,
+    "hint_used_yes": null
+  },
+  "criteria_hint_softened": {
+    "dataset": "internal Validation, 20 Normal + 20 Pneumonia",
+    "TP": 6,
+    "TN": 19,
+    "FP": 1,
+    "FN": 14,
+    "Other": 0,
+    "sensitivity": 0.3,
+    "specificity": 0.95,
+    "hint_used_field_present": 0,
+    "hint_used_yes": null,
+    "matches_hint": 25,
+    "hint_correct": 38
+  }
+}

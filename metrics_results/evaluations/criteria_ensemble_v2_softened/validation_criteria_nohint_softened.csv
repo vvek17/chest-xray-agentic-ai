@@ -1,0 +1,56 @@
+path,true,answer,predicted,medsiglip_predicted,normal_similarity,pneumonia_similarity
+data/processed/Validation/Normal/Normal-2348.png,Normal,Final answer: Normal,Normal,Normal,0.15895822644233704,-0.060783740133047104
+data/processed/Validation/Pneumonia/person1345_bacteria_3426.jpeg,Pneumonia,"Findings: A left-sided chest tube is present. There is a small left pleural effusion and atelectasis in the left lower lobe. The right lung is clear.
+
+Final answer: Normal",Normal,Pneumonia,-0.1071288213133812,0.03359341621398926
+data/processed/Validation/Normal/Normal-3285.png,Normal,Final answer: Normal,Normal,Normal,0.07175637036561966,-0.11127634346485138
+data/processed/Validation/Pneumonia/person1667_bacteria_4418.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,-0.005175609141588211,0.029253657907247543
+data/processed/Validation/Normal/Normal-2804.png,Normal,Final answer: Normal,Normal,Normal,0.15238279104232788,-0.16729502379894257
+data/processed/Validation/Pneumonia/person1391_bacteria_3536.jpeg,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,Pneumonia,-0.024945130571722984,0.13660100102424622
+data/processed/Validation/Normal/Normal-3316.png,Normal,Final answer: Normal,Normal,Normal,0.21917468309402466,-0.05360741913318634
+data/processed/Validation/Pneumonia/person1657_bacteria_4398.jpeg,Pneumonia,"Findings: Patchy opacities in the right lower lung field.
+Final answer: Pneumonia",Pneumonia,Pneumonia,-0.005219214130192995,0.12118013203144073
+data/processed/Validation/Normal/Normal-3320.png,Normal,Final answer: Normal,Normal,Normal,0.06474894285202026,-0.058778613805770874
+data/processed/Validation/Pneumonia/person1420_virus_2431.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.062321171164512634,0.07680408656597137
+data/processed/Validation/Normal/Normal-3313.png,Normal,Final answer: Normal,Normal,Normal,0.10630988329648972,-0.09228881448507309
+data/processed/Validation/Pneumonia/person1369_virus_2356.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.017548328265547752,0.21948738396167755
+data/processed/Validation/Normal/Normal-3444.png,Normal,Final answer: Normal,Normal,Pneumonia,-0.08604440093040466,-0.07722338289022446
+data/processed/Validation/Pneumonia/person1428_virus_2442.jpeg,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,Pneumonia,0.049970485270023346,0.22069650888442993
+data/processed/Validation/Normal/Normal-3216.png,Normal,Final answer: Normal,Normal,Normal,0.10670929402112961,0.02742939069867134
+data/processed/Validation/Pneumonia/person1634_bacteria_4334.jpeg,Pneumonia,"Findings: Cardiomegaly and mild pulmonary edema.
+Final answer: Normal",Normal,Pneumonia,-0.04185415431857109,0.13305307924747467
+data/processed/Validation/Normal/Normal-3314.png,Normal,Final answer: Normal,Normal,Normal,-0.022852491587400436,-0.055241603404283524
+data/processed/Validation/Pneumonia/person1292_virus_2218.jpeg,Pneumonia,"Findings: Mild bilateral interstitial markings.
+Final answer: Normal",Normal,Pneumonia,0.04697519913315773,0.1590064913034439
+data/processed/Validation/Normal/Normal-2185.png,Normal,"Key finding: Mild pulmonary edema.
+Final answer: Normal",Normal,Pneumonia,-0.11163996160030365,-0.035723816603422165
+data/processed/Validation/Pneumonia/person1358_virus_2339.jpeg,Pneumonia,"Findings: Right upper lobe consolidation.
+Final answer: Pneumonia",Pneumonia,Pneumonia,0.0028169401921331882,0.18921060860157013
+data/processed/Validation/Normal/Normal-3140.png,Normal,Final answer: Normal,Normal,Normal,0.14808599650859833,-0.13835248351097107
+data/processed/Validation/Pneumonia/person1619_bacteria_4261.jpeg,Pneumonia,"Findings: Diffuse bilateral patchy opacities and consolidation.
+Final answer: Pneumonia",Pneumonia,Pneumonia,-0.19012807309627533,0.08729385584592819
+data/processed/Validation/Normal/Normal-3380.png,Normal,Final answer: Normal,Normal,Normal,0.10673748701810837,-0.07664092630147934
+data/processed/Validation/Pneumonia/person1685_virus_2903.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.049468591809272766,0.08720557391643524
+data/processed/Validation/Normal/Normal-2561.png,Normal,"Findings: Subtle patchy opacity in the left lower lung field.
+Final answer: Normal",Normal,Normal,0.01832246221601963,-0.002792972605675459
+data/processed/Validation/Pneumonia/person1855_bacteria_4727.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.1139700785279274,0.14932483434677124
+data/processed/Validation/Normal/Normal-3399.png,Normal,Final answer: Normal,Normal,Normal,0.20493265986442566,0.03397602215409279
+data/processed/Validation/Pneumonia/person1670_virus_2886.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.017003560438752174,0.13157027959823608
+data/processed/Validation/Normal/Normal-3301.png,Normal,Final answer: Normal,Normal,Normal,0.16593803465366364,-0.0685439333319664
+data/processed/Validation/Pneumonia/person1668_bacteria_4420.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,0.04514613002538681,0.13542582094669342
+data/processed/Validation/Normal/Normal-3379.png,Normal,Final answer: Normal,Normal,Normal,0.09540227800607681,-0.018793318420648575
+data/processed/Validation/Pneumonia/person1415_bacteria_3629.jpeg,Pneumonia,"Findings: There is patchy opacity in the right lung, particularly in the mid to lower zones, and some increased opacity in the left lung.
+
+Final answer: Pneumonia",Pneumonia,Pneumonia,-0.08226313441991806,0.21705716848373413
+data/processed/Validation/Normal/Normal-2066.png,Normal,Final answer: Normal,Normal,Normal,0.037429288029670715,-0.0014344393275678158
+data/processed/Validation/Pneumonia/person1308_bacteria_3288.jpeg,Pneumonia,"Findings: Cardiomegaly and bilateral pulmonary edema.
+Final answer: Normal",Normal,Pneumonia,-0.17290355265140533,0.1478922963142395
+data/processed/Validation/Normal/Normal-3474.png,Normal,Final answer: Normal,Normal,Normal,-0.06135666370391846,-0.07382448762655258
+data/processed/Validation/Pneumonia/person1348_virus_2326.jpeg,Pneumonia,"Findings: Diffuse bilateral interstitial opacities.
+Final answer: Normal",Normal,Pneumonia,-0.055470727384090424,0.1397007703781128
+data/processed/Validation/Normal/Normal-3366.png,Normal,Final answer: Normal,Normal,Normal,0.0473371259868145,-0.08475250005722046
+data/processed/Validation/Pneumonia/person1298_virus_2228.jpeg,Pneumonia,Final answer: Pneumonia,Pneumonia,Pneumonia,-0.06828504800796509,0.22772791981697083
+data/processed/Validation/Normal/Normal-3471.png,Normal,Final answer: Normal,Normal,Normal,0.07754699885845184,-0.058059584349393845
+data/processed/Validation/Pneumonia/person1438_bacteria_3721.jpeg,Pneumonia,Final answer: Normal,Normal,Pneumonia,-0.026062358170747757,0.08590235561132431

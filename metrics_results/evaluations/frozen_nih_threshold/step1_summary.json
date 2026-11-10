@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "expected": 200,
+    "completed": 200,
+    "class_counts": {
+      "Pneumonia": 100,
+      "Normal": 100
+    },
+    "parse_failures": 0,
+    "siglip_nonfinite": 0,
+    "medgemma_nonfinite": 0,
+    "score_ties": 0,
+    "sign_agrees_greedy": 200,
+    "agreement_denominator": 200,
+    "errors": 0
+  },
+  "validation": {
+    "expected": 200,
+    "completed": 200,
+    "class_counts": {
+      "Pneumonia": 100,
+      "Normal": 100
+    },
+    "parse_failures": 0,
+    "siglip_nonfinite": 0,
+    "medgemma_nonfinite": 0,
+    "score_ties": 2,
+    "sign_agrees_greedy": 198,
+    "agreement_denominator": 200,
+    "errors": 0
+  }
+}

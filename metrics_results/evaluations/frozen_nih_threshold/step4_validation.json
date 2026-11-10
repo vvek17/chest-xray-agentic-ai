@@ -1,0 +1,195 @@
+{
+  "stage": "Step 4 checkpoint",
+  "split": "validation",
+  "seed": 42,
+  "bootstrap_resamples": 2000,
+  "methods": {
+    "MedSigLIP": {
+      "n": 200,
+      "counts": {
+        "TP": 75,
+        "FN": 25,
+        "TN": 61,
+        "FP": 39
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          61,
+          39
+        ],
+        [
+          25,
+          75
+        ]
+      ],
+      "sensitivity": 0.75,
+      "sensitivity_ci95": [
+        0.656955364519384,
+        0.8245478863771232
+      ],
+      "specificity": 0.61,
+      "specificity_ci95": [
+        0.5120301704584073,
+        0.6998312599360558
+      ],
+      "accuracy": 0.68,
+      "Other": 0,
+      "threshold": -0.1631323341280222,
+      "auc": 0.7385999999999999,
+      "auc_ci95": [
+        0.6662,
+        0.80511
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 22,
+        "method_wrong_baseline_correct": 23,
+        "exact_two_sided_p": 1.0
+      }
+    },
+    "MedGemma": {
+      "n": 200,
+      "counts": {
+        "TP": 78,
+        "FN": 22,
+        "TN": 49,
+        "FP": 51
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          49,
+          51
+        ],
+        [
+          22,
+          78
+        ]
+      ],
+      "sensitivity": 0.78,
+      "sensitivity_ci95": [
+        0.6892964648501421,
+        0.8499871761539459
+      ],
+      "specificity": 0.49,
+      "specificity_ci95": [
+        0.3942199893044113,
+        0.5865198806597283
+      ],
+      "accuracy": 0.635,
+      "Other": 0,
+      "threshold": -5.25,
+      "auc": 0.74135,
+      "auc_ci95": [
+        0.6709462500000001,
+        0.80495125
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 25,
+        "method_wrong_baseline_correct": 35,
+        "exact_two_sided_p": 0.2450608330229457
+      }
+    },
+    "Fusion": {
+      "n": 200,
+      "counts": {
+        "TP": 77,
+        "FN": 23,
+        "TN": 58,
+        "FP": 42
+      },
+      "matrix_order": [
+        "Normal",
+        "Pneumonia"
+      ],
+      "confusion_matrix": [
+        [
+          58,
+          42
+        ],
+        [
+          23,
+          77
+        ]
+      ],
+      "sensitivity": 0.77,
+      "sensitivity_ci95": [
+        0.6784561697712622,
+        0.8415673411969654
+      ],
+      "specificity": 0.58,
+      "specificity_ci95": [
+        0.4820648670304296,
+        0.6720161732564526
+      ],
+      "accuracy": 0.675,
+      "Other": 0,
+      "threshold": -0.629323617337661,
+      "auc": 0.7423,
+      "auc_ci95": [
+        0.6723975,
+        0.8082999999999999
+      ],
+      "mcnemar_vs_greedy": {
+        "method_correct_baseline_wrong": 24,
+        "method_wrong_baseline_correct": 26,
+        "exact_two_sided_p": 0.887724827340783
+      }
+    }
+  },
+  "greedy_baseline": {
+    "n": 200,
+    "counts": {
+      "TP": 53,
+      "FN": 47,
+      "TN": 84,
+      "FP": 16
+    },
+    "matrix_order": [
+      "Normal",
+      "Pneumonia"
+    ],
+    "confusion_matrix": [
+      [
+        84,
+        16
+      ],
+      [
+        47,
+        53
+      ]
+    ],
+    "sensitivity": 0.53,
+    "sensitivity_ci95": [
+      0.4328885697009936,
+      0.6248918204065872
+    ],
+    "specificity": 0.84,
+    "specificity_ci95": [
+      0.7557973061072976,
+      0.8990471151119521
+    ],
+    "accuracy": 0.685,
+    "Other": 0,
+    "parse_failures_count_as_errors": 0
+  },
+  "winner": "MedSigLIP",
+  "selection_rule": "Highest specificity subject to sensitivity >=0.75; ties use method definition order",
+  "eligible_methods": [
+    "MedSigLIP",
+    "MedGemma",
+    "Fusion"
+  ],
+  "thresholds_sha256": "6928037c69f86852fcc1358796afe69aba48b575c26b561a2197b727c06d7598",
+  "validation_scores_sha256": "0eebefffe9061663d4f74c43a6f88e3f5e8a56d330560c471252f4c5b8a619ad",
+  "predictions_sha256": "04f0c574ae8299c85b55115faacbe8a619f7e81354e0752d3a9ee17a6e8ea28c",
+  "nonfinite_scores": 0,
+  "final_test_inference": false,
+  "retuning": false
+}

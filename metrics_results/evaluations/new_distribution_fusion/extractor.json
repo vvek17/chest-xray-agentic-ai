@@ -1,0 +1,118 @@
+{
+  "models": [
+    "google/medsiglip-448",
+    "google/medgemma-1.5-4b-it"
+  ],
+  "classes": [
+    "Covid-19",
+    "Normal",
+    "Pneumonia",
+    "Tuberculosis"
+  ],
+  "prompt": {
+    "system": "You are an expert radiologist.",
+    "user": "Look at this chest X-ray. Which one is it: Covid-19, Normal, Pneumonia, Tuberculosis? Answer with exactly one of these names and nothing else."
+  },
+  "targets": {
+    "classes": [
+      "Covid-19",
+      "Normal",
+      "Pneumonia",
+      "Tuberculosis"
+    ],
+    "sequences": [
+      [
+        70465,
+        236772,
+        236770,
+        236819
+      ],
+      [
+        15585
+      ],
+      [
+        236791,
+        24014,
+        13577
+      ],
+      [
+        236774,
+        112335
+      ]
+    ],
+    "first_token_ids": [
+      70465,
+      15585,
+      236791,
+      236774
+    ],
+    "mode": "first_token",
+    "decoded_first_tokens": [
+      "Covid",
+      "Normal",
+      "P",
+      "T"
+    ]
+  },
+  "device": "mps:0",
+  "dtypes": [
+    "torch.float16",
+    "torch.bfloat16"
+  ],
+  "processors": {
+    "medsiglip": {
+      "do_normalize": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "image_mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "image_processor_type": "SiglipImageProcessor",
+      "image_std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "resample": 3,
+      "rescale_factor": 0.00392156862,
+      "size": {
+        "height": 448,
+        "width": 448
+      },
+      "do_convert_rgb": true
+    },
+    "medgemma": {
+      "do_convert_rgb": true,
+      "do_normalize": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "image_mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "image_processor_type": "Gemma3ImageProcessor",
+      "image_seq_length": 256,
+      "image_std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "resample": 2,
+      "rescale_factor": 0.00392156862745098,
+      "size": {
+        "height": 896,
+        "width": 896
+      }
+    }
+  },
+  "shared_cleaner": "backend.clean_image.clean_xray; exactly once per image before either processor",
+  "medsiglip_features": "1152-dimensional L2-normalized image embedding",
+  "medgemma_features": "Full-vocabulary log-softmax; fixed class order; clip minimum -20 before train-only scaling",
+  "model_revisions": [
+    null,
+    null
+  ]
+}

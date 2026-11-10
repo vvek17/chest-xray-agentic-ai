@@ -1,0 +1,21 @@
+{
+  "first_token_ids": {
+    "Normal": 15585,
+    "Pneumonia": 236791
+  },
+  "full_token_sequences": {
+    "Normal": [
+      15585
+    ],
+    "Pneumonia": [
+      236791,
+      24014,
+      13577
+    ]
+  },
+  "decoded_first_tokens": {
+    "Normal": "Normal",
+    "Pneumonia": "P"
+  },
+  "tokenization": "Exact label strings, add_special_tokens=False; first token only"
+}

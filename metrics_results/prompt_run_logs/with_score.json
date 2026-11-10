@@ -1,0 +1,248 @@
+{
+  "prompt_name": "with_score",
+  "prompt_content": "You are an expert radiologist.\n\nLook at this chest X-ray. A separate image classifier suggests it is {label} (confidence {conf:.0%}). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+  "seed": 42,
+  "total_time_s": 30.22406266699545,
+  "results": [
+    {
+      "image_path": "data/processed/Training/Normal/CHNCXR_0173_0.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 97%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.07963254099013284,
+        "classifier": 3.894362874998478,
+        "scope_check": 0.16176462499424815,
+        "prompt": 2.2332998923957348e-05,
+        "medgemma": 8.529504874983104,
+        "total": 12.665356125013204
+      },
+      "final_output": "Normal",
+      "output": {
+        "scores": {
+          "normal": 0.9151173233985901,
+          "pneumonia": 0.028204891830682755
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Normal/MCUCXR_0052_0.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 92%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.16078462501172908,
+        "classifier": 0.2029152910108678,
+        "scope_check": 0.17511491698678583,
+        "prompt": 2.241699257865548e-05,
+        "medgemma": 1.5276534169970546,
+        "total": 2.0665089169924613
+      },
+      "final_output": "Normal",
+      "output": {
+        "scores": {
+          "normal": 0.7691349983215332,
+          "pneumonia": 0.07071954011917114
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0425-0001.jpeg",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 68%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.021931374998530373,
+        "classifier": 0.14712691699969582,
+        "scope_check": 0.1461705839901697,
+        "prompt": 9.874987881630659e-06,
+        "medgemma": 1.478227459010668,
+        "total": 1.7934927500027698
+      },
+      "final_output": "Normal",
+      "output": {
+        "scores": {
+          "normal": 0.6944328546524048,
+          "pneumonia": 0.3237486779689789
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Normal/NORMAL2-IM-0664-0001.jpeg",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 71%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.03146279099746607,
+        "classifier": 0.15278375000343658,
+        "scope_check": 0.1564195000100881,
+        "prompt": 1.2291973689571023e-05,
+        "medgemma": 1.55072158400435,
+        "total": 1.8914241250022314
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.5294824838638306,
+          "pneumonia": 0.21879839897155762
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Normal/Normal-100.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 100%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.0072391249996144325,
+        "classifier": 0.1374771669798065,
+        "scope_check": 0.13697112500085495,
+        "prompt": 1.3874989235773683e-05,
+        "medgemma": 1.9475096669921186,
+        "total": 2.2292274160136003
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.49238595366477966,
+          "pneumonia": 0.0003018509887624532
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-1389.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 51%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.006943416025023907,
+        "classifier": 0.14175312500447035,
+        "scope_check": 0.13899300000048243,
+        "prompt": 1.6166013665497303e-05,
+        "medgemma": 1.7105165410030168,
+        "total": 1.9982444169872906
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.030886109918355942,
+          "pneumonia": 0.029480500146746635
+        },
+        "medgemma_raw": "Pneumonia"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-177.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 91%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.00570983299985528,
+        "classifier": 0.1467473329976201,
+        "scope_check": 0.1393411669996567,
+        "prompt": 1.766698551364243e-05,
+        "medgemma": 1.6764991669915617,
+        "total": 1.968332582997391
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.060678545385599136,
+          "pneumonia": 0.005960526410490274
+        },
+        "medgemma_raw": "Pneumonia"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Tuberculosis/Tuberculosis-2301.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Normal (confidence 99%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.005603249999694526,
+        "classifier": 0.1389417079917621,
+        "scope_check": 0.13751520798541605,
+        "prompt": 1.1416996130719781e-05,
+        "medgemma": 1.493972083000699,
+        "total": 1.7760569579841103
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.6769506931304932,
+          "pneumonia": 0.0038350021932274103
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Pneumonia/person70_virus_130.jpeg",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Pneumonia (confidence 84%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.0034397080016788095,
+        "classifier": 0.1406112920085434,
+        "scope_check": 0.14260916601051576,
+        "prompt": 9.874987881630659e-06,
+        "medgemma": 1.567780292010866,
+        "total": 1.8544657499878667
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.1881323754787445,
+          "pneumonia": 0.997757613658905
+        },
+        "medgemma_raw": "Normal"
+      },
+      "scope_check": {
+        "status": "accepted",
+        "reason": "all_checks_passed"
+      }
+    },
+    {
+      "image_path": "data/processed/Training/Covid-19/sub-S307988_ses-E33931_run-1_bp-chest_vp-ap_dx-corrected.png",
+      "input": "Look at this chest X-ray. A separate image classifier suggests it is Pneumonia (confidence 89%). That classifier can be wrong, so judge the image yourself. Is it Normal or Pneumonia? Answer with only one word.",
+      "time_s": {
+        "clean": 0.015524750022450462,
+        "classifier": 0.1482549590000417,
+        "scope_check": 0.14127241700771265,
+        "prompt": 1.4375022146850824e-05,
+        "medgemma": 1.6671078749932349,
+        "total": 1.9721974589920137
+      },
+      "final_output": "Needs review",
+      "output": {
+        "scores": {
+          "normal": 0.011775611899793148,
+          "pneumonia": 0.09249161183834076
+        },
+        "medgemma_raw": "Pneumonia"
+      },
+      "scope_check": {
+        "status": "needs_review",
+        "reason": "outside_supported_labels"
+      }
+    }
+  ]
+}

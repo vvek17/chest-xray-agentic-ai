@@ -58,4 +58,4 @@ Unparsed answers: 0. Confusion matrix rows = true class; columns = predicted cla
  [ 0  0  0]]
 ```
 
-This is the completed standalone few-shot MedGemma evaluation, not a hybrid result. Per-image outputs remain local under outputs/medgemma_fresh_20_40_70/.
+This is the completed standalone few-shot MedGemma evaluation, not a hybrid result. Published prediction CSVs, metrics and confusion matrices are available in [metrics results](../metrics_results/evaluations/medgemma_fresh_20_40_70/).

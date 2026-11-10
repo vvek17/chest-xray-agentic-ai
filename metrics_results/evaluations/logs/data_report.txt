@@ -1,0 +1,23 @@
+DATA CHECK REPORT
+=================
+Source: the original Training, Validation and Testing folders
+
+Empty or broken images removed: 0
+Duplicate images removed:       38
+
+Images in each part:
+  Training
+    Covid-19        2699
+    Normal          2697
+    Pneumonia       2688
+    Tuberculosis    2693
+  Validation
+    Covid-19         500
+    Normal           500
+    Pneumonia        494
+    Tuberculosis     500
+  Testing
+    Covid-19         700
+    Normal           700
+    Pneumonia        693
+    Tuberculosis     698

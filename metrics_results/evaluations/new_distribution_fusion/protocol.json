@@ -1,0 +1,46 @@
+{
+  "seed": 42,
+  "classes": [
+    "Covid-19",
+    "Normal",
+    "Pneumonia",
+    "Tuberculosis"
+  ],
+  "dataset": "data/new_distribution",
+  "manifest_sha256": {
+    "train": "4671e0072f984bb2b10d59ba65fbb7a7f86af14b90f22b9a5bb70c6253bd389c",
+    "val": "0125cad4462718a6cf522762c94b2eca2710e1434d25052988372a847e7eb4ca",
+    "test": "c22c96b383dbfc178af4b8924b7ca1af5c7b634d224759e725bb90679f82322b"
+  },
+  "source_sha256": {
+    "training/train_dual_backbone.py": "3d3d715118d2d3bc215005a3bf4c74ca10a8f7d8e65e88700cffa46b7a38f11b",
+    "backend/dual_backbone.py": "24d372d8b7ab1c655bb3163ef9c3661585ead41f4c9fb5821b4d26ffa35313ad",
+    "backend/clean_image.py": "49ea431e7199f94e76f9ee61a89e82b45f27b82ea9eb8294a45e6af23a9032cc",
+    "backend/medgemma.py": "4e3561299e97b784dba779809d83084305740c920a4a21533c4675ae87baba1b",
+    "backend/zero_shot_ensemble.py": "e08d800a7566f9ee7f932af357d4f4f243572e0ebba4caa775d6951997c836d3"
+  },
+  "selection": "Validation macro-F1, ties balanced accuracy then lower validation loss; first trial wins remaining ties",
+  "head_training": {
+    "lr": [
+      0.001,
+      0.003,
+      0.01
+    ],
+    "weight_decay": [
+      0.0001,
+      0.01
+    ],
+    "batch_size": 128,
+    "max_epochs": 200,
+    "patience": 20,
+    "loss": "Class-weighted CE + positive-weighted BCEWithLogits"
+  },
+  "feature_batch": 4,
+  "feature_dim": 1156,
+  "optional_pooled_hidden_state": false,
+  "scaler": "Population mean/std of TRAIN only, std floor 1e-6, MedGemma logprobs clipped minimum -20",
+  "backbones_trainable": false,
+  "outputs": "Linear-softmax + Linear-sigmoid; average probabilities then renormalize",
+  "test_access": "After validation selection and immutable checkpoint only; evaluate once, no retuning",
+  "NIH_used": false
+}
