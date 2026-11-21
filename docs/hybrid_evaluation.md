@@ -6,7 +6,7 @@ Patient independence and pretraining overlap are unverified. Research only.
 
 ## How to run
 
-From `/Users/vivek/Desktop/Alzaimer-AgenticAI/chest-xray-pneumonia`:
+From `chest-xray-pneumonia`:
 
 ```bash
 source ../.venv/bin/activate

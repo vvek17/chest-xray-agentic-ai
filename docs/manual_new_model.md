@@ -5,7 +5,7 @@ Uses `data/new_distribution` only. Both MedSigLIP and MedGemma remain frozen; th
 From the project folder, run the complete workflow:
 
 ```bash
-cd /Users/vivek/Desktop/Alzaimer-AgenticAI/chest-xray-pneumonia
+cd chest-xray-pneumonia
 ../.venv/bin/python -B -u -m training.train_probe --new-model
 ```
 

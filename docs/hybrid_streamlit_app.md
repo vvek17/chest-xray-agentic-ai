@@ -735,7 +735,7 @@ h2, h3 { letter-spacing: -0.025em; }
 ## Exact run command
 
 ```bash
-cd /Users/vivek/Desktop/Alzaimer-AgenticAI/chest-xray-pneumonia
+cd chest-xray-pneumonia
 source ../.venv/bin/activate
 streamlit run frontend/app.py --server.port 8502
 ```
