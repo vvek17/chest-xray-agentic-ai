@@ -40,26 +40,3 @@ Open the images directly or expand them on GitHub. Compare training and validati
 ![Fresh MedGemma test confusion matrix](evaluations/medgemma_fresh_20_40_70/test_confusion.png)
 
 Label-only MedGemma answers do not support ROC-AUC, probability calibration or training-loss curves. [NIH development ROC figures](evaluations/frozen_nih_threshold/figures/) belong to a separate score-based protocol and development split.
-
-## Run status and other evidence
-
-- **Completed:** the fresh standalone MedGemma train/validation/test run; see its metric JSONs, prediction CSVs, report and [execution log](evaluations/medgemma_fresh_evaluation_run.log).
-- **Historical/interrupted:** [initial MedGemma run](evaluations/medgemma_evaluation_run.log) and `medgemma_20_40_70/` are separate from the completed fresh run.
-- **Prepared, no completed result in this snapshot:** [staged hybrid report](evaluations/hybrid_original_testing_20_40_70/report.md). Its protocol text does not establish hybrid accuracy. Preparation and guard-check logs are operational evidence only.
-- **Incomplete:** [new distribution dual-backbone status](evaluations/new_distribution_fusion/status.json) records feature extraction, with zero test images processed. Its [training log](evaluations/new_distribution_fusion/training.log) and README do not establish completed metrics.
-- **Other saved experiments:** `zero_shot_ensemble/`, `nih_zero_shot_ensemble/`, `nih_zero_shot_ensemble_20_each/`, `criteria_ensemble_v2/` and `criteria_ensemble_v2_softened/` retain their available CSVs and JSONs. Inspect their split, support and selection records; a folder name alone does not establish completion or comparability.
-
-## Questions for the senior reviewer
-
-1. Are splits independent at patient and source level? Exact image deduplication does not prove patient independence.
-2. Are high internal scores driven by class-correlated source/age differences? Compare the NIH results before claiming generalization.
-3. Is missing pneumonia or falsely flagging a normal image the greater concern for this research objective? Review sensitivity and specificity together.
-4. Were prompts and thresholds selected using development/validation only, and was the test set previously used? The NIH final report explicitly notes earlier use of that set.
-5. Do hints cause MedGemma to repeat classifier mistakes? Review wrong-hint corrections and broken correct hints only where that configuration has actual results.
-6. Which configuration merits the next independent evaluation? Avoid ranking methods evaluated on different images as if they shared a test set.
-
-## Artifact provenance
-
-[artifact_index.csv](artifact_index.csv) lists each original local source, published path, byte count and SHA-256 hashes before and after path normalization. `medgemma_fresh_summary.csv` is derived from the three saved fresh metric JSONs. Dataset images, model weights, feature caches, dataset inventories and split manifests are not part of this review package. Original local artifacts remain in place.
-
-This is research evidence, with patient independence and pretraining overlap unverified. Scores are not calibrated diagnostic certainty.
