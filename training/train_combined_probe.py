@@ -25,7 +25,7 @@ What it saves:
   outputs/curves_combined_model.png
 
 Run it from the chest-xray-pneumonia folder (NOT from Alzaimer-AgenticAI):
-    cd ~/Desktop/Alzaimer-AgenticAI/chest-xray-pneumonia
+    cd chest-xray-pneumonia
     python -m training.train_combined_probe
 """
 
